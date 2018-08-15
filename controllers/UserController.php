@@ -40,8 +40,7 @@ class UserController
             }
 
         }
-
-        if (isset($_SESSION['userId'])) {
+        else if (isset($_SESSION['userId'])) {
             header("Location: /error404");
         } else {
             require_once(ROOT . '/views/site/register.php');

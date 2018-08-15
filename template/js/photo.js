@@ -2,8 +2,7 @@
     var video = document.getElementById('video'),
         canvas = document.getElementById('canvas'),
         context = canvas.getContext('2d'),
-        photo = document.getElementById('photo'),
-        overlay = document.querySelector('.overlay img').src;
+        photo = document.getElementById('photo');
         vendorUrl = window.URL || window.webkitURL;
     navigator.getMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.
         mozGetUserMedia || navigator.msGetUserMedia;
@@ -17,11 +16,17 @@
         alert('Ошибка! Что-то пошло не так, попробуйте позже.');
     });
     document.getElementById('capture').addEventListener('click', function() {
+        var overlay = document.querySelector('.overlay img').src;
         context.drawImage(video, 0, 0, 400, 300);
-        //ajax запрос приймет -> xhr.send(overlay и canvas.toDataURL('image/png')) -> вернет (код картинки)
-        //-> потом передать в  photo.setAttribute('src', result);
-        photo.setAttribute('src', canvas.toDataURL('image/png'));
 
-        // Написать запрос Ajax; отправить на camera_make
+        var xhr = new XMLHttpRequest();
+        var data = "overlay=" + overlay + "&img=" + canvas.toDataURL('image/png');
+        xhr.open('POST', '/camera_make', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.onreadystatechange = function() {
+            if (this.readyState != 4) return;
+            photo.setAttribute('src', this.responseText);
+        };
+        xhr.send(data) ;
     });
 })();

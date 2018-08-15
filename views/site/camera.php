@@ -19,14 +19,14 @@
                 </div>
                 <div class="show_photo">
                     <canvas id="canvas" width="400" height="300"></canvas>
-                    <img src="http://goo.gl/qgUfzX" id="photo" alt="Ваша фотография">
+                    <img src="" id="photo" alt="">
                 </div>
             </div>
             <div class="patterns">
-                <a href="#"><div class="patterns_photo"><img onclick="funcChangeSRC(this)" src="../../template/image/layer.svg" alt=""></div></a>
-                <a href="#"><div class="patterns_photo"><img onclick="funcChangeSRC(this)" src="../../template/image/circle.svg" alt=""></div></a>
+                <a href="#"><div class="patterns_photo"><img onclick="funcChangeSRC(this)" src="../../template/image/space.png" alt=""></div></a>
                 <a href="#"><div class="patterns_photo"><img onclick="funcChangeSRC(this)" src="../../template/image/rocket.png" alt=""></div></a>
-                <a href="#"><div class="patterns_photo"><img onclick="funcChangeSRC(this)" src="" alt="" width="50px" height="50px"></div></a>
+                <a href="#"><div class="patterns_photo"><img onclick="funcChangeSRC(this)" src="" alt=""></div></a>
+                <a href="#"><div class="patterns_photo"><img onclick="funcChangeSRC(this)" src="" alt=""></div></a>
                 <a href="#"><div class="patterns_photo">ptrns</div></a>
                 <a href="#"><div class="patterns_photo">ptrns</div></a>
                 <a href="#"><div class="patterns_photo">ptrns</div></a>

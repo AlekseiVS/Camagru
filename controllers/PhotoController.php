@@ -49,16 +49,33 @@ class PhotoController{
 
 
     public function actionCamera_make(){
-        if (isset($_SESSION['userId'])) {
+        if (isset($_SESSION['userId']) && isset($_POST['overlay'])) {
             $userId = $_SESSION['userId'];
             $user = User::getUserById($userId);
 
-        //Оброботать Ajax запроч
 
-//            require_once(ROOT . '/views/site/camera.php');//Подключить страницу камеры!!!
+            $img1 = $_POST['overlay'];
+            $img2 = preg_replace("/^.+base64,/", "", $_POST['img']);
+            $img2 = str_replace(' ','+',$img2);
+            $img2 = base64_decode($img2);
+            $gd_photo = imagecreatefromstring($img2);
+            $gd_filter = imagecreatefrompng($img1);
+            imagecopy($gd_photo, $gd_filter, 0, 0, 0, 0, 400, 300);
+            ob_start();
+                imagepng($gd_photo);
+                $image_data = ob_get_contents();
+            ob_end_clean();
+            echo "data:image/png;base64," . base64_encode($image_data);
+
+        }
+        else if(isset($_SESSION['userId'])){
+            $userId = $_SESSION['userId'];
+            $user = User::getUserById($userId);
+            require_once(ROOT . '/views/site/error404.php');
         }
         else
             require_once(ROOT . '/views/site/error404.php');
+
 
         return true;
 
