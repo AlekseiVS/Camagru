@@ -10,8 +10,6 @@ class UserController
         $result = false;
 
 
-
-
         if (isset($_POST['submit'])) {
             $name = $_POST['name'];
             $email = $_POST['email'];
@@ -42,10 +40,12 @@ class UserController
         }
         else if (isset($_SESSION['userId'])) {
             header("Location: /error404");
-        } else {
-            require_once(ROOT . '/views/site/register.php');
         }
+
+        require_once(ROOT . '/views/site/register.php');
+
         return true;
+
     }
 
     public function actionLogin()

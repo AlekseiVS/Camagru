@@ -98,7 +98,7 @@
 
 }
 
-
+button{outline:none;}
 
 .photo_bottom{
     min-width: 700px;
@@ -116,12 +116,22 @@
     font-weight: 300;
 }
 
-.photo_bottom button{
+.photo_bottom a{
     padding: 0;
     width: 25%;
     height: 47px;
     display: flex;
     justify-content: center;
+    font-size: 22px;
+    font-weight: 100;
+    background-color: #868686;
+    color: #FFF;
+    cursor: pointer;
+}
+
+.photo_bottom button, form{
+    padding: 0;
+    width: 100%;
     font-size: 22px;
     font-weight: 100;
     background-color: #868686;
@@ -140,7 +150,7 @@
     width: 80%;
     padding: 0 10% 0 10%;
     margin: 0 auto;
-    margin-top: 15px;
+    margin-top: 35px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -152,12 +162,13 @@
     width: 400px;
     height: 300px;
     display: flex;
-    justify-content: center;
+    /*justify-content: center;*/
     border: 1px solid #FF473A;
     /*flex-wrap: wrap;*/
 }
 
 .make_photo .overlay{
+    /*display: none;*/
     position: absolute;
     width: 400px;
     height: 300px;
@@ -167,6 +178,15 @@
     width: 400px;
     height: 300px;
 }
+
+.upload_photo img{
+    width: 400px;
+    height: 300px;
+}
+
+
+
+
 
 .patterns{
     min-width: 700px;
@@ -219,7 +239,39 @@
     /*height: 300px;*/
 /*}*/
 
+/*button #capture{*/
+    /*position: absolute;*/
+    /*padding: 0;*/
+    /*width: 25%;*/
+    /*height: 47px;*/
+    /*display: flex;*/
+    /*justify-content: center;*/
+    /*font-size: 22px;*/
+    /*font-weight: 100;*/
+    /*background-color: #868686;*/
+    /*color: #FFF;*/
+    /*cursor: pointer;*/
+/*}*/
 
+.content_camera button{
+    margin-top: 255px;
+    margin-left: 10px;
+    position: absolute;
+    width: 120px;
+    height: 35px;
+    font-size: 16px;
+    font-weight: 100;
+    opacity: 0.5;
+    background-color: #868686;
+    color: #FFF;
+    cursor: pointer;
+}
+
+.content_camera button:hover{
+    background-color: #FF473A;
+    transition: 0.9s;
+    opacity: 1;
+}
 
 #canvas {
     display: none;

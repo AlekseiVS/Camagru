@@ -81,16 +81,32 @@ class PhotoController{
 
     }
 
-//    public function actionChange_user_data(){
-//        if (isset($_SESSION['userId'])) {
+//actionCamera_upload
+    public function actionCamera_upload(){
+        if (isset($_SESSION['userId'])) {
+            $userId = $_SESSION['userId'];
+            $user = User::getUserById($userId);
+
+
+            require_once(ROOT . '/views/site/camera.php');
+        }
+//        else if(isset($_SESSION['userId'])){
 //            $userId = $_SESSION['userId'];
 //            $user = User::getUserById($userId);
+//            require_once(ROOT . '/views/site/error404.php');
 //        }
-//        require_once(ROOT . '/views/site/cabinet.php');
-//
-//        return true;
-//
-//    }
+//        else
+//            require_once(ROOT . '/views/site/error404.php');
+
+        require_once(ROOT . '/views/site/camera.php');
+        return true;
+
+    }
+
+
+
+
+
 
     public function actionGallery_user(){
         if (isset($_SESSION['userId'])) {

@@ -7,15 +7,40 @@
                 <a href="/gallery_user"><i class="far fa-image"></i><div class="nav_block">User photo</div></a>
             </div>
             <div class="photo_bottom">
-                <button id="capture" class="booth-capture-button">make photo</button>
-                <button>upload photo</button>
-                <button>save</button>
-                <button>remove</button>
+                <a href="#"><button id="do_width_camera">do width camera</button></a>
+
+<!-- --------------------------------------------------------------------------------------- -->
+
+
+                <a href="/camera_upload">
+
+                    <button >
+                        upload photo
+<!--                        <form action="#" method="POST" enctype="multipart/form-data">-->
+<!--                            Select image to upload:-->
+<!--                            <input type="hidden" name="MAX_FILE_SIZE" value="30000" />-->
+<!--                            <input type="file" name="fileToUpload" id="fileToUpload">-->
+<!--<!--                            <input type="submit" value="Upload Image" name="submit">-->
+<!--                        </form>-->
+                    </button>
+
+                </a>
+
+
+<!--   ----------------------------------------------------------------------------------------------------- -->
+
+
+                <a href="#"><button>save</button></a>
+                <a href="#"><button id="remove">remove</button></a>
             </div>
             <div class="content_camera">
                 <div class="make_photo">
                     <div class="overlay"><img src="" alt=""></div>
+                    <div class="upload_photo">
+<!--                        <img src="../../--><?php //echo $_SESSION['src']?><!--" alt="">-->
+                    </div>
                     <video id="video" width="400" height="300" autoplay></video>
+                    <button id="make_photo">make photo</button>
                 </div>
                 <div class="show_photo">
                     <canvas id="canvas" width="400" height="300"></canvas>
@@ -25,8 +50,8 @@
             <div class="patterns">
                 <a href="#"><div class="patterns_photo"><img onclick="funcChangeSRC(this)" src="../../template/image/space.png" alt=""></div></a>
                 <a href="#"><div class="patterns_photo"><img onclick="funcChangeSRC(this)" src="../../template/image/rocket.png" alt=""></div></a>
-                <a href="#"><div class="patterns_photo"><img onclick="funcChangeSRC(this)" src="" alt=""></div></a>
-                <a href="#"><div class="patterns_photo"><img onclick="funcChangeSRC(this)" src="" alt=""></div></a>
+                <a href="#"><div class="patterns_photo"><img onclick="funcChangeSRC(this)" src="#" ></div></a>
+                <a href="#"><div class="patterns_photo"><img onclick="funcChangeSRC(this)" src="#" ></div></a>
                 <a href="#"><div class="patterns_photo">ptrns</div></a>
                 <a href="#"><div class="patterns_photo">ptrns</div></a>
                 <a href="#"><div class="patterns_photo">ptrns</div></a>
@@ -38,4 +63,5 @@
     </main>
     <script src="../../template/js/change_src_img.js"></script>
     <script src="../../template/js/photo.js"></script>
+    <script src="../../template/js/del_photo_canvas.js"></script>
 <?php include ROOT.'/views/layouts/footer.php'?>

@@ -21,12 +21,15 @@ return array(
     '^change_user_data$' => 'user/change_user_data', //actionChange_data_user  AccountController
 
 
-    '^gallery$' => 'photo/gallery', //actionGallery  AccountController
-    '^cabinet$' => 'photo/cabinet', //actionCabinet  AccountController
-    '^camera$' => 'photo/camera', //actionCamera  AccountController
-    '^camera_make$' => 'photo/camera_make', //actionCamera  AccountController
-    '^camera_save$' => 'photo/camera_save', //actionCamera_save  AccountController
-    '^gallery_user$' => 'photo/gallery_user', //actionGallery_user  AccountController
+    '^gallery$' => 'photo/gallery', //actionGallery  PhotoController
+    '^cabinet$' => 'photo/cabinet', //actionCabinet  PhotoController
+    '^camera$' => 'photo/camera', //actionCamera  PhotoController
+    '^camera_make$' => 'photo/camera_make', //actionCamera  PhotoController
+//    '^camera_save$' => 'photo/camera_save', //actionCamera_save  PhotoController
+
+    '^camera_upload$' => 'photo/camera_upload', //actionCamera_upload  PhotoController
+
+    '^gallery_user$' => 'photo/gallery_user', //actionGallery_user  PhotoController
 
 
 //    '[a-zA-Z0-9]+' => 'user/error404', ////actionError404  UserController
