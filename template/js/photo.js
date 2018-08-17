@@ -9,19 +9,20 @@ document.getElementById('do_width_camera').addEventListener('click', function() 
         video: true,
         audio: false
     }, function (stream) {
-        video.src = vendorUrl.createObjectURL(stream);
+        video.srcObject = stream;
         video.play();
     }, function (error) {
         alert('Ошибка! Что-то пошло не так, попробуйте позже.');
     });
 
-
-    document.getElementById('make_photo').addEventListener('click', function() {
+    document.getElementById('make_photo1').addEventListener('click', function() {
         var overlay = document.querySelector('.overlay img').src;
         context.drawImage(video, 0, 0, 400, 300);
 
         var xhr = new XMLHttpRequest();
         var data = "overlay=" + overlay + "&img=" + canvas.toDataURL('image/png');
+
+
         xhr.open('POST', '/camera_make', true);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         xhr.onreadystatechange = function() {
@@ -31,4 +32,21 @@ document.getElementById('do_width_camera').addEventListener('click', function() 
         xhr.send(data) ;
 
     });
-})();
+});
+
+document.getElementById('upload_photo').addEventListener('click', function() {
+    document.getElementById('make_photo2').addEventListener('click', function() {
+        var overlay = document.querySelector('.overlay img').src;
+
+        var xhr = new XMLHttpRequest();
+        var data = "overlay=" + overlay + "&img=" + window.a;
+
+        xhr.open('POST', '/camera_make', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.onreadystatechange = function() {
+            if (this.readyState != 4) return;
+            photo.setAttribute('src', this.responseText);
+        };
+        xhr.send(data) ;
+    });
+});

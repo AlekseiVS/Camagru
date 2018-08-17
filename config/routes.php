@@ -27,7 +27,7 @@ return array(
     '^camera_make$' => 'photo/camera_make', //actionCamera  PhotoController
 //    '^camera_save$' => 'photo/camera_save', //actionCamera_save  PhotoController
 
-    '^camera_upload$' => 'photo/camera_upload', //actionCamera_upload  PhotoController
+//    '^camera_upload$' => 'photo/camera_upload', //actionCamera_upload  PhotoController
 
     '^gallery_user$' => 'photo/gallery_user', //actionGallery_user  PhotoController
 

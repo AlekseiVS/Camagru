@@ -82,26 +82,26 @@ class PhotoController{
     }
 
 //actionCamera_upload
-    public function actionCamera_upload(){
-        if (isset($_SESSION['userId'])) {
-            $userId = $_SESSION['userId'];
-            $user = User::getUserById($userId);
-
-
-            require_once(ROOT . '/views/site/camera.php');
-        }
-//        else if(isset($_SESSION['userId'])){
+//    public function actionCamera_upload(){
+//        if (isset($_SESSION['userId'])) {
 //            $userId = $_SESSION['userId'];
 //            $user = User::getUserById($userId);
-//            require_once(ROOT . '/views/site/error404.php');
+//
+//
+//            require_once(ROOT . '/views/site/camera.php');
 //        }
-//        else
-//            require_once(ROOT . '/views/site/error404.php');
-
-        require_once(ROOT . '/views/site/camera.php');
-        return true;
-
-    }
+////        else if(isset($_SESSION['userId'])){
+////            $userId = $_SESSION['userId'];
+////            $user = User::getUserById($userId);
+////            require_once(ROOT . '/views/site/error404.php');
+////        }
+////        else
+////            require_once(ROOT . '/views/site/error404.php');
+//
+//        require_once(ROOT . '/views/site/camera.php');
+//        return true;
+//
+//    }
 
 
 
