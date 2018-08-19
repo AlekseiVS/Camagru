@@ -100,13 +100,12 @@ class PhotoController{
             $img = str_replace(' ','+',$img);
             $img = base64_decode($img);
 
-
             $name_img = time();
-            $userDir = ROOT."/template/image/".$name_img.".png";
+            $src_img = ROOT."/template/image/".$name_img.".png";
 
-            file_put_contents($userDir, $img);
+            file_put_contents($src_img, $img);
 
-            //Добавить idUser и src img в таблицу!!!
+            //Добавить idUser и путь к img в таблицу!!!
 
         }
         else if(isset($_SESSION['userId'])){
