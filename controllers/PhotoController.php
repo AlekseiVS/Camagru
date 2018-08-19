@@ -34,6 +34,7 @@ class PhotoController{
 
 
     public function actionCamera(){
+
         if (isset($_SESSION['userId'])) {
             $userId = $_SESSION['userId'];
             $user = User::getUserById($userId);
@@ -49,6 +50,7 @@ class PhotoController{
 
 
     public function actionCamera_make(){
+
         if (isset($_SESSION['userId']) && isset($_POST['overlay'])) {
             $userId = $_SESSION['userId'];
             $user = User::getUserById($userId);
@@ -81,27 +83,43 @@ class PhotoController{
 
     }
 
-//actionCamera_upload
-//    public function actionCamera_upload(){
-//        if (isset($_SESSION['userId'])) {
-//            $userId = $_SESSION['userId'];
-//            $user = User::getUserById($userId);
-//
-//
-//            require_once(ROOT . '/views/site/camera.php');
-//        }
-////        else if(isset($_SESSION['userId'])){
-////            $userId = $_SESSION['userId'];
-////            $user = User::getUserById($userId);
-////            require_once(ROOT . '/views/site/error404.php');
-////        }
-////        else
-////            require_once(ROOT . '/views/site/error404.php');
-//
-//        require_once(ROOT . '/views/site/camera.php');
-//        return true;
-//
-//    }
+
+
+
+    public function actionPhoto_save(){
+        if (isset($_SESSION['userId']) && isset($_POST['photo'])) {
+            $userId = $_SESSION['userId'];
+            $user = User::getUserById($userId);
+
+            $checkPng = explode(".", $_POST['photo']);
+            if ($checkPng[1] === "png") {
+                exit;
+            }
+
+            $img = preg_replace("/^.+base64,/", "", $_POST['photo']);
+            $img = str_replace(' ','+',$img);
+            $img = base64_decode($img);
+
+
+            $name_img = time();
+            $userDir = ROOT."/template/image/".$name_img.".png";
+
+            file_put_contents($userDir, $img);
+
+            //Добавить idUser и src img в таблицу!!!
+
+        }
+        else if(isset($_SESSION['userId'])){
+            $userId = $_SESSION['userId'];
+            $user = User::getUserById($userId);
+            require_once(ROOT . '/views/site/error404.php');
+        }
+        else
+            require_once(ROOT . '/views/site/error404.php');
+
+        return true;
+
+    }
 
 
 

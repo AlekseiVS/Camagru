@@ -25,7 +25,7 @@ return array(
     '^cabinet$' => 'photo/cabinet', //actionCabinet  PhotoController
     '^camera$' => 'photo/camera', //actionCamera  PhotoController
     '^camera_make$' => 'photo/camera_make', //actionCamera  PhotoController
-//    '^camera_save$' => 'photo/camera_save', //actionCamera_save  PhotoController
+    '^photo_save' => 'photo/photo_save', //actionCamera_save  PhotoController
 
 //    '^camera_upload$' => 'photo/camera_upload', //actionCamera_upload  PhotoController
 

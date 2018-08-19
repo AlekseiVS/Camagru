@@ -8,7 +8,7 @@
             </div>
             <div class="photo_bottom">
                 <a href="#">
-                    <button id="do_width_camera">do width camera</button></a>
+                    <button id="do_with_camera">do with camera</button></a>
                 <a href="#">
                     <button id="upload_photo">
 <!--                        upload_photo-->
@@ -21,20 +21,20 @@
 <!-- </form>-->
                     </button>
                 </a>
-                <a href="#"><button>save</button></a>
+                <a href="#"><button id="save">save</button></a>
                 <a href="#"><button id="remove">remove</button></a>
             </div>
             <div class="content_camera">
                 <div class="make_photo">
                     <video id="video" width="400" height="300" autoplay></video>
                     <div class="upload_photo_preview"></div>
-                    <div class="overlay"><img src="../../template/image/space.png" alt=""></div>
+                    <div class="overlay"><img src="../../template/image/camera.png" alt=""></div>
                     <button id="make_photo1">make photo</button>
                     <button id="make_photo2">make photo</button>
                 </div>
                 <div class="show_photo">
                     <canvas id="canvas" width="400" height="300"></canvas>
-                    <img src="" id="photo" alt="">
+                    <img src="../../template/image/picture.png" id="photo" alt="">
                 </div>
             </div>
             <div class="patterns">
@@ -53,7 +53,8 @@
     </main>
     <script src="../../template/js/change_src_img.js"></script>
     <script src="../../template/js/photo.js"></script>
-    <script src="../../template/js/del_photo_canvas.js"></script>
+    <script src="../../template/js/del_photo.js"></script>
     <script src="../../template/js/unload.js"></script>
     <script src="../../template/js/display_none.js"></script>
+    <script src="../../template/js/save_photo.js"></script>
 <?php include ROOT.'/views/layouts/footer.php'?>

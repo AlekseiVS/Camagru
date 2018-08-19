@@ -1,4 +1,4 @@
-document.getElementById('do_width_camera').addEventListener('click', function() {
+document.getElementById('do_with_camera').addEventListener('click', function() {
     var video = document.getElementById('video'),
         canvas = document.getElementById('canvas'),
         context = canvas.getContext('2d'),

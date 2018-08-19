@@ -207,11 +207,11 @@ button{outline:none;}
 }
 
 .make_photo, .show_photo{
-    width: 400px;
+    width: 398px;
     height: 300px;
     display: flex;
     /*justify-content: center;*/
-    border: 1px solid #FF473A;
+    border: 3px solid #868686;
     /*flex-wrap: wrap;*/
 }
 
@@ -221,9 +221,6 @@ button{outline:none;}
     width: 400px;
     height: 300px;
 }
-
-
-
 
 .make_photo .overlay{
     position: absolute;
@@ -244,9 +241,6 @@ button{outline:none;}
     width: 400px;
     height: 300px;
 }
-
-
-
 
 
 .patterns{

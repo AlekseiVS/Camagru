@@ -19,8 +19,8 @@
                 <a href="/logout"><li><i class="fas fa-sign-out-alt"></i>logout</li></a>
             <?php } else if(!isset($_SESSION['userId'])){ ?>
                 <a href="/gallery"><li><i class="far fa-images"></i>gallery</li></a>
-                <a href="http://localhost:8080/login"><li><i class="fas fa-sign-in-alt"></i>login</li></a>
-                <a href="http://localhost:8080"><li><i class="fas fa-user"></i>registr</li></a>
+                <a href="/login"><li><i class="fas fa-sign-in-alt"></i>login</li></a>
+                <a href="/register"><li><i class="fas fa-user"></i>register</li></a>
             <?php }?>
         </ul>
     </div>
