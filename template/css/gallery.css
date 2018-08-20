@@ -1,0 +1,90 @@
+.content_gallery{
+    width: 80%;
+    height: 100%;
+    min-width: 700px;
+    padding: 0 10% 0 10%;
+    background:rgba(255,255,255, 0.8);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    align-content: stretch;
+    color: #fff;
+}
+
+main .user_block{
+    margin-top: 20px;
+    width: 400px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    border:1px solid #868686;
+    color: #868686;
+}
+
+.user_block .img{
+    width: 400px;
+    height: 300px;
+    background: #fff;
+}
+
+.user_block .like_comment_user_data{
+    display: flex;
+    /*padding: 5px 0 5px 0;*/
+    font-size: 18px;
+    font-weight: 300;
+    border-top:1px solid #868686;
+    border-bottom:1px solid #868686;
+
+}
+
+.like_comment_user_data .like{
+    width: 60px;
+    display: flex;
+    justify-content: center;
+    border-right:1px solid #868686;
+    padding: 5px 0 5px 0;
+    /*font-size: 24px;*/
+}
+
+.like_comment_user_data .like i{margin-right: 5px;}
+
+.like_comment_user_data #icon_comment{
+    width: 60px;
+    display: flex;
+    justify-content: center;
+    padding: 5px 0 5px 0;
+    /*font-size: 24px;*/
+    font-weight: 100;
+    border-right:1px solid #868686;
+}
+
+.like_comment_user_data .user_name_time{
+    width: 280px;
+    display: flex;
+    justify-content: center;
+}
+
+.user_name_time .user_name, .data_photo{
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    border-right:1px solid #868686;
+    padding: 5px 0 5px 0;
+}
+
+.user_name_time .data_photo{border: 0;}
+
+.user_name_time .user_name i, .data_photo i{margin-right: 10px;}
+
+#comments{
+    display: none;
+    font-weight: 300;
+    padding: 10px 0 10px 15px;
+    font-size:16px;
+}
+
+.user_name_left_comment{padding-bottom: 10px;}
+
+.text_comments{font-size: 14px;}

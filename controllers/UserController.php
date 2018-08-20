@@ -33,7 +33,9 @@ class UserController
 
                 $token = User::createToken();
                 $result = User::register($name, $email, $password, $token);
-                User::sendLinkConfirmToEmail($email, $token);
+
+                $r = User::sendLinkConfirmToEmail($email, $token);
+                var_dump($r);
 
             }
 
@@ -143,6 +145,7 @@ class UserController
             $token = $_GET['token'];
 
             $result = User::confirmLinkThroughEmailToken($email, $token);
+            var_dump($result);
             if ($result) {
                 User::changeStatus($email);
                 header("Location: /login");

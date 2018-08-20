@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
     <link href="../../template/css/main.css" rel="stylesheet">
     <link href="../../template/css/cabinet.css" rel="stylesheet">
+    <link href="../../template/css/gallery.css" rel="stylesheet">
 </head>
 <body>
 <header>

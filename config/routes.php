@@ -16,7 +16,10 @@ return array(
     '^login$' => 'user/login', //actionLogin  UserController
     '^forgot$' => 'user/forgot', //actionForgot UserController
     '^logout$' => 'user/logout', //actionLogout  UserController
-    '^confirm$' => 'user/confirm', //actionConfirm  UserController
+
+    'confirm' => 'user/confirm', //actionConfirm  UserController //  Проверить на эррор,
+    // можно взламать так как нет конкретики ^confirm$ - решить проблему!!!
+
     '^error404$' => 'user/error404', //actionError404  UserController
     '^change_user_data$' => 'user/change_user_data', //actionChange_data_user  AccountController
 

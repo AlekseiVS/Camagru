@@ -103,9 +103,12 @@ class PhotoController{
             $name_img = time();
             $src_img = ROOT."/template/image/".$name_img.".png";
 
+            //Сохранение в папку
             file_put_contents($src_img, $img);
 
-            //Добавить idUser и путь к img в таблицу!!!
+            //Сохранение в БД
+            Photo::saveSrcImgAndUserId($userId, $src_img);
+
 
         }
         else if(isset($_SESSION['userId'])){

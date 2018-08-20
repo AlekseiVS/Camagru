@@ -207,7 +207,13 @@ class User{
             'Reply-To: osokoliu@gmail.com' . "\r\n" .
             'X-Mailer: PHP/' . phpversion();
 
-        mail($to, $subject, $message, $headers);
+//        var_dump($to)."/n";
+//        var_dump($message);
+        if(mail($to, $subject, $message, $headers)){
+            return true;
+        }
+        else
+            return false;
 
     }
 
