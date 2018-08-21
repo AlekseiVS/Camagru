@@ -29,6 +29,7 @@ return array(
     '^camera$' => 'photo/camera', //actionCamera  PhotoController
     '^camera_make$' => 'photo/camera_make', //actionCamera  PhotoController
     '^photo_save' => 'photo/photo_save', //actionCamera_save  PhotoController
+    '^comment_save' => 'photo/comment_save', //actionCamera_save  PhotoController
 
 //    '^camera_upload$' => 'photo/camera_upload', //actionCamera_upload  PhotoController
 

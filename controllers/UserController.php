@@ -68,11 +68,7 @@ class UserController
             if (!User::checkPassword($password)) {
                 $errors[] = 'Password must not be shorter than 6 characters';
             }
-//            if (!($status = User::checkSatatus($email))) {
-//                $errors[] = 'You did not confirm the registration by link on your mail';
-//            }
 
-            // Проверяем существует ли пользователь и
             $userId = User::checkUserData($email, $password);
             $statusUser = User::checkSatatus($email);
 
@@ -82,7 +78,8 @@ class UserController
             }
             if ($statusUser == false) {
                 $errors[] = 'You did not confirm the registration by link on your mail';
-            } else {
+            }
+            if ($errors == false){
 //                 Если данные правильные, запоминаем пользователя (сессия)
                 User::auth($userId);
 //                 Перенаправляем пользователя в закрытую часть - кабинет

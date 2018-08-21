@@ -13,8 +13,6 @@ class PhotoController{
 
         return true;
 
-
-
     }
 
     public function actionGallery(){
@@ -22,6 +20,10 @@ class PhotoController{
         if (isset($_SESSION['userId'])) {
             $userId = $_SESSION['userId'];
             $user = User::getUserById($userId);
+
+            $res = Photo::getDataTableImgUsers();
+//            $name
+//            var_dump($res);
 
             require_once(ROOT . '/views/site/gallery.php');
         }
@@ -101,7 +103,7 @@ class PhotoController{
             $img = base64_decode($img);
 
             $name_img = time();
-            $src_img = ROOT."/template/image/".$name_img.".png";
+            $src_img = "template/image/".$name_img.".png";
 
             //Сохранение в папку
             file_put_contents($src_img, $img);
@@ -122,6 +124,37 @@ class PhotoController{
         return true;
 
     }
+
+
+
+
+
+
+
+    public function actionComment_save(){
+        if (isset($_SESSION['userId']) && isset($_POST['comment'])) {
+            $userId = $_SESSION['userId'];
+            $user = User::getUserById($userId);
+
+//            var_dump($_POST['comment']);
+
+//            для возврата данных
+            echo $_POST['comment'];
+        }
+        else if(isset($_SESSION['userId'])){
+            $userId = $_SESSION['userId'];
+            $user = User::getUserById($userId);
+            require_once(ROOT . '/views/site/error404.php');
+        }
+        else
+            require_once(ROOT . '/views/site/error404.php');
+
+        return true;
+
+    }
+
+
+
 
 
 

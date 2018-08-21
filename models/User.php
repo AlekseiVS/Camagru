@@ -99,6 +99,7 @@ class User{
         $result->execute();
 
         $user = $result->fetch();
+        var_dump($user);
         if ($user) {
             return $user['id'];
         }
