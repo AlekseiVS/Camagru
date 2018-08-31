@@ -145,7 +145,7 @@ main .user_block{
     color: #868686;
 }
 
-.user_name_left_comment{font-style: italic}
+.user_name_left_comment{font-style: italic;}
 
 .user_name_left_comment, #text_comments{
     padding: 10px 0 0 10px;

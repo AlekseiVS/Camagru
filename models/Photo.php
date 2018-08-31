@@ -3,17 +3,58 @@ class Photo{
     static function saveSrcImgAndUserId($id_user, $src_img){
         $db = Db::getConnection();
 
-        $data =  date("Y-m-d H:i:s"); //  -час-мин-сек
+        $date =  date("Y-m-d H:i:s"); //  -час-мин-сек
 
-        $sql = 'INSERT INTO img (id_user, src_img, data) VALUES (:id_user, :src_img, :data)';
+        $sql = 'INSERT INTO img (id_user, src_img, date) VALUES (:id_user, :src_img, :date)';
 
         $result = $db->prepare($sql);
         $result->bindParam(':id_user', $id_user, PDO::PARAM_STR);
         $result->bindParam(':src_img', $src_img, PDO::PARAM_STR);
-        $result->bindParam(':data', $data, PDO::PARAM_STR);
+        $result->bindParam(':date', $date, PDO::PARAM_STR);
 
         return $result->execute();
     }
+
+
+
+
+
+    static function saveIdImgUserNameCommentToTableComments($user_name, $id_img, $comment){
+        $db = Db::getConnection();
+
+        $sql = 'INSERT INTO comments (user_name, id_img, comment) VALUES (:user_name, :id_img, :comment)';
+
+        $result = $db->prepare($sql);
+//        $result->bindParam(':id_user', $id_user, PDO::PARAM_STR);
+        $result->bindParam(':user_name', $user_name, PDO::PARAM_STR);
+        $result->bindParam(':id_img', $id_img, PDO::PARAM_STR);
+        $result->bindParam(':comment', $comment, PDO::PARAM_STR);
+
+        return $result->execute();
+    }
+
+
+
+
+
+    static function getDataTableComments($id_img){
+        $db = Db::getConnection();
+
+        $sql = 'SELECT * FROM comments WHERE id_img = :id_img';
+
+        $result = $db->prepare($sql);
+        $result->bindParam(':id_img', $id_img, PDO::PARAM_INT);
+        $result->execute();
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+
+        return $result->fetchAll();
+
+//        echo '<pre>';
+//        var_dump($res);
+//        echo '</pre>';
+    }
+
+
 
 
     static function getDataTableImgUsers(){

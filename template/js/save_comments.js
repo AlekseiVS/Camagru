@@ -1,17 +1,9 @@
-// document.getElementsByClassName('save_comment')[0].addEventListener('click', checkEvent);
-
 
 function checkEvent(form){
-    // var text_comment2 = document.querySelector('.input_text_comments textarea').value;
-    var comments = document.querySelector('.comments');
 
     var text_comment = form.comment.value;
     var img_id = form.id_img.value;
-
-        // if(!text_comment)
-    //     return ;
-    // console.log(form.comment.value);
-    // alert(text_comment);
+    var comments = document.getElementById('comments_' + img_id);
 
     var xhr = new XMLHttpRequest();
     var data = "comment=" + text_comment + "&img_id=" + img_id;
@@ -22,14 +14,21 @@ function checkEvent(form){
 
     xhr.onreadystatechange = function() {
         if (this.readyState != 4) return;
+
         form.comment.value = "";
+
+        console.log(xhr.responseText);
+
+        var res = JSON.parse(xhr.responseText);
+
+        console.log(res);
+
         var div = document.createElement('div');
         div.className = "comment";
-        div.innerHTML = "<div class='user_name_left_comment'>" + xhr.responseText + ":</div>" +
-            "<div id='text_comments'>" + xhr.responseText + "</div>";
-        // div.innerHTML = xhr.responseText;
+        div.innerHTML = "<div class='user_name_left_comment'>" + res.name + ":</div>" +
+            "<div id='text_comments'>" + res.comment + "</div>";
+
         comments.prepend(div);
-        // comments.prependChild()
     };
 
 }

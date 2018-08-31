@@ -21,9 +21,20 @@ class PhotoController{
             $userId = $_SESSION['userId'];
             $user = User::getUserById($userId);
 
-            $res = Photo::getDataTableImgUsers();
-//            $name
-//            var_dump($res);
+            $result1 = Photo::getDataTableImgUsers();
+
+            foreach ($result1 as $key => $row){
+                $result2[$key] = Photo::getDataTableComments($row['id_img']);
+            }
+
+            echo '<pre style="color: #fff;">';
+            var_dump($result2);
+            echo '</pre>';
+
+
+//            $result2 = Photo::getDataTableComments($data['id_img']);
+//Сделать запрос в TableComments вытащить данные user_name/comment
+
 
             require_once(ROOT . '/views/site/gallery.php');
         }
@@ -134,12 +145,19 @@ class PhotoController{
     public function actionComment_save(){
         if (isset($_SESSION['userId']) && isset($_POST['comment'])) {
             $userId = $_SESSION['userId'];
+
             $user = User::getUserById($userId);
 
-//            var_dump($_POST['comment']);
+//          записать в БД id_img/user_id/comment в table comments
+            Photo::saveIdImgUserNameCommentToTableComments($user['name'], $_POST['img_id'], $_POST['comment']);
 
-//            для возврата данных
-            echo $_POST['comment'];
+            $result = [
+                'name' => $user['name'],
+                'comment' => $_POST['comment']
+            ];
+
+            echo json_encode($result);
+//          echo $_POST['comment']; Спросить у макса или так правильно или нет?
         }
         else if(isset($_SESSION['userId'])){
             $userId = $_SESSION['userId'];
