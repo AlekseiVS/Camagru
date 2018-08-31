@@ -3,12 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="39af019b-2109-4f16-8842-c76552f1067b" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/PhotoController.php" afterPath="$PROJECT_DIR$/controllers/PhotoController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/Photo.php" afterPath="$PROJECT_DIR$/models/Photo.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/template/css/gallery.css" afterPath="$PROJECT_DIR$/template/css/gallery.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/template/js/gallery_like_comment.js" afterPath="$PROJECT_DIR$/template/js/gallery_like_comment.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/template/js/save_comments.js" afterPath="$PROJECT_DIR$/template/js/save_comments.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/site/gallery.php" afterPath="$PROJECT_DIR$/views/site/gallery.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -63,8 +57,8 @@
               <file leaf-file-name="PhotoController.php" pinned="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/controllers/PhotoController.php">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="294">
-                      <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+                    <state relative-caret-position="798">
+                      <caret line="40" column="12" lean-forward="true" selection-start-line="40" selection-start-column="12" selection-end-line="40" selection-end-column="12" />
                       <folding>
                         <marker date="1535729268000" expanded="true" signature="748:760" ph="..." />
                       </folding>
@@ -214,8 +208,8 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="136" />
-    <option name="y" value="148" />
+    <option name="x" value="-171" />
+    <option name="y" value="160" />
     <option name="width" value="2352" />
     <option name="height" value="1185" />
   </component>
@@ -358,16 +352,15 @@
       <workItem from="1534830795642" duration="17558000" />
       <workItem from="1534859463618" duration="236000" />
       <workItem from="1534860021239" duration="5202000" />
-      <workItem from="1535702408630" duration="21848000" />
+      <workItem from="1535702408630" duration="21935000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="127221000" />
+    <option name="totallyTimeSpent" value="127308000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="136" y="148" width="2352" height="1185" extended-state="0" />
-    <editor active="true" />
+    <frame x="-171" y="160" width="2352" height="1185" extended-state="0" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.107792206" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -377,7 +370,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32960895" sideWeight="0.49856144" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22905028" sideWeight="0.49856144" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22905028" sideWeight="0.49856144" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -732,8 +725,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/PhotoController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+        <state relative-caret-position="798">
+          <caret line="40" column="12" lean-forward="true" selection-start-line="40" selection-start-column="12" selection-end-line="40" selection-end-column="12" />
           <folding>
             <marker date="1535729268000" expanded="true" signature="748:760" ph="..." />
           </folding>
