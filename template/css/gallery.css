@@ -14,7 +14,8 @@
 }
 
 main .user_block{
-    margin-top: 20px;
+    margin-top: 30px;
+    margin-bottom: 20px;
     width: 400px;
     height: auto;
     display: flex;
@@ -63,11 +64,11 @@ main .user_block{
 
 .user_block .like_comment{
     width: 100%;
-    height: 45px;
+    height: 29px;
     margin-top: 2px;
     display: flex;
     justify-content: space-between;
-    font-size: 18px;
+    /*font-size: 16px;*/
     font-weight: 300;
 
 }
@@ -81,7 +82,7 @@ main .user_block{
     background-color: #868686;
     color: white;
     cursor: pointer;
-    font-size: 22px;
+    font-size: 18px;
 }
 
 .like_comment .like:hover, .icon_comment:hover{
@@ -91,7 +92,7 @@ main .user_block{
 
 .like_comment .like i, .icon_comment i{
     margin-right: 10px;
-    font-size: 26px;
+    font-size: 18px;
 }
 
 
@@ -110,8 +111,9 @@ main .user_block{
 .input_text_comments input{
     margin-top: 2px;
     width: 100%;
+    height: 29px;
     border: 0;
-    padding: 10px;
+    padding-left: 10px;
     font-size: 14px;
     font-weight: 300;
 }
@@ -120,13 +122,14 @@ main .user_block{
 .comments_block button{
     margin:2px 0 2px 0;
     width: 100%;
+    height: 29px;
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: #868686;
     color: white;
     cursor: pointer;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 100;
     border: 0;
     padding: 5px 0 5px 0;
@@ -139,16 +142,16 @@ main .user_block{
 
 .comment{
     width: 100%;
-    border-top:1px dashed #fff;
+    border-bottom:1px dashed #fff;
     /*border-bottom:1px dashed #fff;*/
     padding-bottom: 10px;
     color: #868686;
 }
 
-.user_name_left_comment{font-style: italic;}
+.user_name_left_comment{font-weight: 100;}
 
 .user_name_left_comment, #text_comments{
-    padding: 10px 0 0 10px;
+    padding: 5px 0 0 5px;
 }
 
 #text_comments{font-size: 14px;}

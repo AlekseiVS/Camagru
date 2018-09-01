@@ -14,7 +14,7 @@
                     </div>
                     <div class="like_comment">
                         <div class="like"><i class="far fa-thumbs-up"></i>3</div>
-                        <div class="icon_comment" id="<?php echo $data['id_img'];?>" onclick="showCommentArea(this.id)"><i class="far fa-comment"></i>5</div>
+                        <div class="icon_comment" id="<?php echo $data['id_img'];?>" onclick="showCommentArea(this.id)"><i class="far fa-comment"></i><?php echo $result3[$data['id_img']]['count']?></div>
                     </div>
                     <div class="comments_block" id="comments_block_<?php echo $data['id_img'];?>" >
                         <form method="POST" onsubmit="checkEvent(this); return false;">
@@ -22,7 +22,7 @@
                                 <input name="comment" id="comment" placeholder="Enter the text comment!"></p>
                             </div>
                             <input type="hidden" name="id_img" value="<?php echo $data['id_img'];?>">
-                            <button class="save_comment" type="submit" value="leave your comment">leave your comment</button>
+                            <button class="save_comment" type="submit" value="leave your comment">Leave your comment</button>
                         </form>
                         <div class="comments"  id="comments_<?php echo $data['id_img'];?>">
 <!--                            --><?php //print_r($result2);?>
@@ -46,4 +46,5 @@
     </main>
     <script src="../../template/js/gallery_like_comment.js"></script>
     <script src="../../template/js/save_comments.js"></script>
+    <script src="../../template/js/count.js"></script>
 <?php include ROOT.'/views/layouts/footer.php'?>

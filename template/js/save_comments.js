@@ -16,18 +16,13 @@ function checkEvent(form){
         if (this.readyState != 4) return;
 
         form.comment.value = "";
-
-        console.log(xhr.responseText);
-
+        // console.log(xhr.responseText);
         var res = JSON.parse(xhr.responseText);
-
-        console.log(res);
-
+        // console.log(res);
         var div = document.createElement('div');
         div.className = "comment";
         div.innerHTML = "<div class='user_name_left_comment'>" + res.name + ":</div>" +
             "<div id='text_comments'>" + res.comment + "</div>";
-
         comments.prepend(div);
     };
 

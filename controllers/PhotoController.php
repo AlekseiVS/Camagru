@@ -23,18 +23,19 @@ class PhotoController{
 
             $result1 = Photo::getDataTableImgUsers();
 
+
             foreach ($result1 as $key => $row){
                 $result2[$key] = Photo::getDataTableComments($row['id_img']);
+                $count = 0;
+                foreach ($result2[$key] as $array)
+                    $count++;
+                $result3[$row['id_img']]['count'] = $count;
+
             }
 
-            echo '<pre style="color: #fff;">';
-            var_dump($result2);
-            echo '</pre>';
-
-
-//            $result2 = Photo::getDataTableComments($data['id_img']);
-//Сделать запрос в TableComments вытащить данные user_name/comment
-
+//            echo '<pre style="color: #fff;">';
+//            var_dump($result2);
+//            echo '</pre>';
 
             require_once(ROOT . '/views/site/gallery.php');
         }
