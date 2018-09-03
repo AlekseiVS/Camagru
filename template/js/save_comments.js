@@ -5,6 +5,14 @@ function checkEvent(form){
     var img_id = form.id_img.value;
     var comments = document.getElementById('comments_' + img_id);
 
+
+    var count_comments = document.getElementById('count_comments_' + img_id).innerHTML;
+    count_comments++;
+    document.getElementById('count_comments_' + img_id).innerHTML = count_comments;
+
+    //count_likes
+
+
     var xhr = new XMLHttpRequest();
     var data = "comment=" + text_comment + "&img_id=" + img_id;
 

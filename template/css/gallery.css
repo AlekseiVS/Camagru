@@ -148,7 +148,7 @@ main .user_block{
     color: #868686;
 }
 
-.user_name_left_comment{font-weight: 100;}
+#text_comments{font-weight: 100;}
 
 .user_name_left_comment, #text_comments{
     padding: 5px 0 0 5px;

@@ -35,6 +35,81 @@ class Photo{
 
 
 
+    static function checkLike($id_user, $id_img){
+        $db = Db::getConnection();
+
+        $sql = 'SELECT * FROM likes WHERE id_user = :id_user AND id_img = :id_img';
+
+        $result = $db->prepare($sql);
+        $result->bindParam(':id_user', $id_user, PDO::PARAM_INT);
+        $result->bindParam(':id_img', $id_img, PDO::PARAM_INT);
+        $result->execute();
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+
+        $res = $result->fetch();
+        if ($res)
+            return true;
+        return false;
+    }
+
+
+
+    static function delLike($id_user, $id_img){
+        $db = Db::getConnection();
+
+        $sql = 'DELETE FROM likes WHERE id_user = :id_user AND id_img = :id_img';
+
+        $result = $db->prepare($sql);
+        $result->bindParam(':id_user', $id_user, PDO::PARAM_INT);
+        $result->bindParam(':id_img', $id_img, PDO::PARAM_INT);
+        $result->execute();
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+
+        $result->fetch();
+
+    }
+
+
+    static function getDataTableLike($id_img)
+    {
+        $db = Db::getConnection();
+
+        $sql = 'SELECT * FROM likes WHERE id_img = :id_img';
+
+        $result = $db->prepare($sql);
+        $result->bindParam(':id_img', $id_img, PDO::PARAM_INT);
+        $result->execute();
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+
+        $array = $result->fetchAll();
+//        var_dump($array);
+        $count = 0;
+        foreach ($array as $row)
+            $count++;
+//        var_dump($count);
+        return ($count);
+
+    }
+
+
+
+    static function saveIdImgUserNameToTableLikes($id_user, $id_img){
+        $db = Db::getConnection();
+
+        $sql = 'INSERT INTO likes (id_user, id_img) VALUES (:id_user, :id_img)';
+
+        $result = $db->prepare($sql);
+//        $result->bindParam(':id_user', $id_user, PDO::PARAM_STR);
+        $result->bindParam(':id_user', $id_user, PDO::PARAM_STR);
+        $result->bindParam(':id_img', $id_img, PDO::PARAM_STR);
+
+        $result->execute();
+    }
+
+
+
+
+
 
 
     static function getDataTableComments($id_img){
@@ -48,6 +123,14 @@ class Photo{
         $result->setFetchMode(PDO::FETCH_ASSOC);
 
         return $result->fetchAll();
+
+//        $array = $result->fetchAll();
+////        var_dump($array);
+//        $count = 0;
+//        foreach ($array as $row)
+//            $count++;
+////        var_dump($count);
+//        return ($count);
 
 //        echo '<pre>';
 //        var_dump($res);

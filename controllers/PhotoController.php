@@ -29,9 +29,12 @@ class PhotoController{
                 $count = 0;
                 foreach ($result2[$key] as $array)
                     $count++;
-                $result3[$row['id_img']]['count'] = $count;
+                $count_comments[$row['id_img']]['count'] = $count;
+                $count_like[$row['id_img']]['count'] = Photo::getDataTableLike($row['id_img']);
 
             }
+
+            //count_likes
 
 //            echo '<pre style="color: #fff;">';
 //            var_dump($result2);
@@ -39,11 +42,15 @@ class PhotoController{
 
             require_once(ROOT . '/views/site/gallery.php');
         }
-        else
-            require_once(ROOT . '/views/site/error404.php'); //Надо подключить галеерею с ограниченными правами
-        // пока пользователь не зарегестрируется
+        else if(!isset($_SESSION['userId'])){
+            $result1 = Photo::getDataTableImgUsers();
 
+            require_once(ROOT . '/views/site/gallery.php');
+//            require_once(ROOT . '/views/site/gallery.php'); //Надо подключить галеерею с ограниченными правами
+            // пока пользователь не зарегестрируется
+        }
         return true;
+
     }
 
 
@@ -159,6 +166,39 @@ class PhotoController{
 
             echo json_encode($result);
 //          echo $_POST['comment']; Спросить у макса или так правильно или нет?
+        }
+        else if(isset($_SESSION['userId'])){
+            $userId = $_SESSION['userId'];
+            $user = User::getUserById($userId);
+            require_once(ROOT . '/views/site/error404.php');
+        }
+        else
+            require_once(ROOT . '/views/site/error404.php');
+
+        return true;
+
+    }
+
+
+
+    public function actionLike_save(){
+        if (isset($_SESSION['userId']) && isset($_POST['img_id'])) {
+            $userId = $_SESSION['userId'];
+
+            $user = User::getUserById($userId);
+
+            $res = Photo::checkLike($user['id'], $_POST['img_id']);
+            if (!$res){
+                Photo::saveIdImgUserNameToTableLikes($user['id'], $_POST['img_id']);
+            }
+            else
+                Photo::delLike($user['id'], $_POST['img_id']);
+
+
+            $count = Photo::getDataTableLike($_POST['img_id']);
+
+            echo json_encode($count);
+
         }
         else if(isset($_SESSION['userId'])){
             $userId = $_SESSION['userId'];
