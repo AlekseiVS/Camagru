@@ -194,10 +194,48 @@ class PhotoController{
             else
                 Photo::delLike($user['id'], $_POST['img_id']);
 
-
             $count = Photo::getDataTableLike($_POST['img_id']);
-
             echo json_encode($count);
+
+        }
+        else if(isset($_SESSION['userId'])){
+            $userId = $_SESSION['userId'];
+            $user = User::getUserById($userId);
+            require_once(ROOT . '/views/site/error404.php');
+        }
+        else
+            require_once(ROOT . '/views/site/error404.php');
+
+        return true;
+
+    }
+
+
+
+
+    public function actionLike_color(){
+//        echo 'aaa';
+        if (isset($_SESSION['userId']) && isset($_POST)) { //id0 не хорошо(Нужно как то исправить)!!!
+            $userId = $_SESSION['userId'];
+
+            foreach ($_POST as $key => $id)
+            {
+                $idd[] = $id;
+            }
+            var_dump($idd);
+
+
+
+//            $user = User::getUserById($userId);
+
+            // проверить в цыкле like, создать масив с id существующих like и вернуть его!
+//            $res = Photo::checkLike($user['id'], $idd);
+//
+//            if($res == 1)
+//                echo 'aaa';
+//            else
+//                echo 'error';
+//
 
         }
         else if(isset($_SESSION['userId'])){

@@ -59,5 +59,5 @@
     <script src="../../template/js/gallery_like_comment.js"></script>
     <script src="../../template/js/save_comments.js"></script>
     <script src="../../template/js/save_like.js"></script>
-    <script src="../../template/js/count.js"></script>
+    <script src="../../template/js/color_like.js"></script>
 <?php include ROOT.'/views/layouts/footer.php'?>
