@@ -46,13 +46,10 @@ class Photo{
         $result->execute();
         $result->setFetchMode(PDO::FETCH_ASSOC);
 
-        $res = $result->fetch();
-        if ($res)
-            return true;
-        return false;
+        return $result->fetch();
     }
 
-
+//--------------------------------------------------------------------------------
 
     static function delLike($id_user, $id_img){
         $db = Db::getConnection();
@@ -70,6 +67,41 @@ class Photo{
     }
 
 
+
+
+    static function delCommentsFromImg($id_img){
+        $db = Db::getConnection();
+
+        $sql = 'DELETE FROM comments WHERE id_img = :id_img';
+
+        $result = $db->prepare($sql);
+        $result->bindParam(':id_img', $id_img, PDO::PARAM_INT);
+        $result->execute();
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+
+        $result->fetch();
+
+    }
+
+
+
+    static function delImageFromImg($id_img){
+        $db = Db::getConnection();
+
+        $sql = 'DELETE FROM img WHERE id_img = :id_img';
+
+        $result = $db->prepare($sql);
+        $result->bindParam(':id_img', $id_img, PDO::PARAM_INT);
+        $result->execute();
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+
+        $result->fetch();
+
+    }
+
+
+
+//------------------------------------------------------------------------------------
     static function getDataTableLike($id_img)
     {
         $db = Db::getConnection();

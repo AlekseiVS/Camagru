@@ -54,6 +54,45 @@ class PhotoController{
     }
 
 
+    public function actionGallery_user(){
+        if (isset($_SESSION['userId'])) {
+            $userId = $_SESSION['userId'];
+            $user = User::getUserById($userId);
+
+
+            $result1 = Photo::getDataTableImgUsers();
+
+//            echo '<pre style="color: #fff;">';
+//
+//            var_dump($result1);
+//            echo $_SESSION['useId'];
+//            echo '<pre>';
+
+
+            foreach ($result1 as $key => $row){
+                $result2[$key] = Photo::getDataTableComments($row['id_img']);
+                $count = 0;
+                foreach ($result2[$key] as $array)
+                    $count++;
+                $count_comments[$row['id_img']]['count'] = $count;
+                $count_like[$row['id_img']]['count'] = Photo::getDataTableLike($row['id_img']);
+            }
+            $result3['user_name_gallery'] = $user['name'];
+
+//            echo '<pre style="color: #fff;">';
+//            var_dump($result1);
+//            echo '<pre>';
+
+            require_once(ROOT . '/views/site/gallery_user.php');
+        }
+        else
+            require_once(ROOT . '/views/site/error404.php');
+
+        return true;
+
+    }
+
+
     public function actionCamera(){
 
         if (isset($_SESSION['userId'])) {
@@ -112,10 +151,12 @@ class PhotoController{
             $userId = $_SESSION['userId'];
             $user = User::getUserById($userId);
 
-            $checkPng = explode(".", $_POST['photo']);
-            if ($checkPng[1] === "png") {
-                exit;
-            }
+
+            //Разобраться с этой проверкой!!!
+//            $checkPng = explode(".", $_POST['photo']);
+//            if ($checkPng[1] === "png") {
+//                exit;
+//            }
 
             $img = preg_replace("/^.+base64,/", "", $_POST['photo']);
             $img = str_replace(' ','+',$img);
@@ -129,6 +170,8 @@ class PhotoController{
 
             //Сохранение в БД
             Photo::saveSrcImgAndUserId($userId, $src_img);
+
+            echo 'Your photo has been added to the gallery';
 
 
         }
@@ -215,36 +258,34 @@ class PhotoController{
 
     public function actionLike_color(){
 //        echo 'aaa';
-        if (isset($_SESSION['userId']) && isset($_POST)) { //id0 не хорошо(Нужно как то исправить)!!!
+        if (isset($_SESSION['userId']) && isset($_POST)) {
             $userId = $_SESSION['userId'];
 
-            foreach ($_POST as $key => $id)
-            {
-                $idd[] = $id;
+            $user = User::getUserById($userId);
+
+            foreach ($_POST as $key => $id) {
+                $res = Photo::checkLike($user['id'], $id);
+                if($res){
+                    $array_id[] = $id;
+                }
             }
-            var_dump($idd);
 
+//            var_dump($array_id);
 
+            if(isset($array_id) && $array_id != '')
+                echo json_encode($array_id);
+            else
+                echo 'error';
 
+        }
+        else
+            echo 'error';//if(!isset($_SESSION['userId'])){
+//            $userId = $_SESSION['userId'];
 //            $user = User::getUserById($userId);
-
-            // проверить в цыкле like, создать масив с id существующих like и вернуть его!
-//            $res = Photo::checkLike($user['id'], $idd);
-//
-//            if($res == 1)
-//                echo 'aaa';
-//            else
-//                echo 'error';
-//
-
-        }
-        else if(isset($_SESSION['userId'])){
-            $userId = $_SESSION['userId'];
-            $user = User::getUserById($userId);
-            require_once(ROOT . '/views/site/error404.php');
-        }
-        else
-            require_once(ROOT . '/views/site/error404.php');
+//            require_once(ROOT . '/views/site/gallery.php');
+//        }
+//        else
+//            require_once(ROOT . '/views/site/error404.php');
 
         return true;
 
@@ -252,25 +293,26 @@ class PhotoController{
 
 
 
-
-
-
-
-
-
-    public function actionGallery_user(){
-        if (isset($_SESSION['userId'])) {
+    public function actionDel_user_photo_block(){
+        if (isset($_SESSION['userId']) && isset($_POST['img_id'])) {
             $userId = $_SESSION['userId'];
+
             $user = User::getUserById($userId);
+            $img_id = $_POST['img_id'];
 
-            require_once(ROOT . '/views/site/cabinet.php');
+            Photo::delCommentsFromImg($img_id);
+            Photo::delLike($user['id'], $img_id);
+            Photo::delImageFromImg($img_id);
+
+            echo $img_id;
         }
-        else
-            require_once(ROOT . '/views/site/error404.php');
-
         return true;
-
     }
+
+
+
+
+
 
 
 }

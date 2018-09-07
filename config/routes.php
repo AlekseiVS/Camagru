@@ -36,6 +36,7 @@ return array(
 //    '^camera_upload$' => 'photo/camera_upload', //actionCamera_upload  PhotoController
 
     '^gallery_user$' => 'photo/gallery_user', //actionGallery_user  PhotoController
+    '^del_user_photo_block$' => 'photo/del_user_photo_block', //actionGallery_user  PhotoController
 
 
 //    '[a-zA-Z0-9]+' => 'user/error404', ////actionError404  UserController

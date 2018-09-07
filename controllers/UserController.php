@@ -164,11 +164,13 @@ class UserController
 
     public function actionError404()
     {
-        $userId = $_SESSION['userId'];
-        $user = User::getUserById($userId);
+        if (isset($_SESSION['userId'])) {
+            $userId = $_SESSION['userId'];
+            $user = User::getUserById($userId);
 
+            require_once(ROOT . '/views/site/error404.php');
+        }
         require_once(ROOT . '/views/site/error404.php');
-
         return true;
     }
 
