@@ -21,6 +21,8 @@ class PhotoController{
             $userId = $_SESSION['userId'];
             $user = User::getUserById($userId);
 
+//            echo $parameters[0];
+
             $result1 = Photo::getDataTableImgUsers();
 
 

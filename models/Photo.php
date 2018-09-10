@@ -155,18 +155,6 @@ class Photo{
         $result->setFetchMode(PDO::FETCH_ASSOC);
 
         return $result->fetchAll();
-
-//        $array = $result->fetchAll();
-////        var_dump($array);
-//        $count = 0;
-//        foreach ($array as $row)
-//            $count++;
-////        var_dump($count);
-//        return ($count);
-
-//        echo '<pre>';
-//        var_dump($res);
-//        echo '</pre>';
     }
 
 
@@ -184,6 +172,39 @@ class Photo{
         return $result->fetchAll();
 
     }
+
+
+
+
+    static function getDataTableImgUsers1($offset){
+        $db = Db::getConnection();
+
+        $sql = 'SELECT * FROM img INNER JOIN users ON img.id_user = users.id LIMIT 4 OFFSET '.$offset;//' LIMIT '.$offset;
+
+        $result = $db->prepare($sql);
+        $result->execute();
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+
+        return $result->fetchAll();
+
+    }
+
+
+
+    //Сколько страниц нужно делать!!!
+
+//    static function getTotalProducts(){
+//        $db = Db::getConnection();
+//
+//        $result = $db->query('SELECT COUNT(id) AS count FROM img');
+//        $result->setFetchMode(PDO::FETCH_ASSOC);
+//        $row = $result->fetch();
+//
+//        return $row['count'];
+//
+//    }
+
+
 }
 
 ?>

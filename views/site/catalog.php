@@ -10,7 +10,7 @@
                         <div class="data_photo"><i class="far fa-calendar-check"></i><?php echo $data['date'];?></div>
                     </div>
                     <div class="img">
-                        <img src="<?php echo $data['src_img'];?>" alt="">
+                        <img src="<?php echo "../" . $data['src_img'];?>" alt="">
                     </div>
                     <?php if(isset($_SESSION['userId'])): ;?>
                         <div class="like_comment">
@@ -54,8 +54,10 @@
                     </div>
             <?php endif;?>
             <?php endforeach; ?>
-<!--            --><?php //echo $pagination->get(); ?>
+            <?php echo $pagination->get(); ?>
         </div>
+
+
 
     </main>
 <!--    <script src="../../template/js/pagination.js"></script>-->

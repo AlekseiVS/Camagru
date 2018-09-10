@@ -194,3 +194,24 @@ main .user_block{
     background-color: #FF473A;
     transition: 0.9s;
 }
+
+.pagination{
+    list-style-type: none;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    font-size: 22px;
+    font-weight: 300;
+}
+
+.pagination a{
+    background: #868686;
+    margin-right: 5px;
+    /*border: 2px solid  #FF473A;*/
+    padding: 3px 10px 3px 10px;
+}
+
+.pagination a:hover{
+    transition: 0.9s;
+    background: #FF473A;
+}

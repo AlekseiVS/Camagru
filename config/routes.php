@@ -3,6 +3,12 @@ return array(
 //    'product/([0-9]+)' => 'product/view/$1', //actionView ProductController
 //    'catalog' => 'catalog/index', //actionIndex CatalogController
 //    'category/([0-9]+)/page-([0-9]+)' => 'catalog/category/$1/$2', //actionCategory CatalogController
+
+
+    'catalog/page-([0-9]+)' => 'catalog/page/$1', //actionCategory CatalogController
+//    'catalog' => 'catalog/catalog/$1', //actionCategory CatalogController
+
+
 //    'category/([0-9]+)' => 'catalog/category/$1', //actionCategory  CatalogController
 //
 //    'user/register' => 'user/register', //actionRegister  UserController
@@ -24,7 +30,11 @@ return array(
     '^change_user_data$' => 'user/change_user_data', //actionChange_data_user  AccountController
 
 
+
     '^gallery$' => 'photo/gallery', //actionGallery  PhotoController
+
+//    '^gallery$' => 'catalog/catalog/page-1', //actionCategory CatalogController
+
     '^cabinet$' => 'photo/cabinet', //actionCabinet  PhotoController
     '^camera$' => 'photo/camera', //actionCamera  PhotoController
     '^camera_make$' => 'photo/camera_make', //actionCamera  PhotoController
