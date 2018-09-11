@@ -15,45 +15,45 @@ class PhotoController{
 
     }
 
-    public function actionGallery(){
+//    public function actionGallery(){
+//
+//        if (isset($_SESSION['userId'])) {
+//            $userId = $_SESSION['userId'];
+//            $user = User::getUserById($userId);
+//
+////            echo $parameters[0];
+//
+//            $result1 = Photo::getDataTableImgUsers();
+//
+//
+//            foreach ($result1 as $key => $row){
+//                $result2[$key] = Photo::getDataTableComments($row['id_img']);
+//                $count = 0;
+//                foreach ($result2[$key] as $array)
+//                    $count++;
+//                $count_comments[$row['id_img']]['count'] = $count;
+//                $count_like[$row['id_img']]['count'] = Photo::getDataTableLike($row['id_img']);
+//
+//            }
+//
+//            //count_likes
+//
+////            echo '<pre style="color: #fff;">';
+////            var_dump($result2);
+////            echo '</pre>';
+//
+//            require_once(ROOT . '/views/site/gallery.php');
+//        }
+//        else if(!isset($_SESSION['userId'])){
+//            $result1 = Photo::getDataTableImgUsers();
+//
+//            require_once(ROOT . '/views/site/gallery.php');
+////            require_once(ROOT . '/views/site/gallery.php'); //Надо подключить галеерею с ограниченными правами
+//            // пока пользователь не зарегестрируется
+//        }
+//        return true;
 
-        if (isset($_SESSION['userId'])) {
-            $userId = $_SESSION['userId'];
-            $user = User::getUserById($userId);
-
-//            echo $parameters[0];
-
-            $result1 = Photo::getDataTableImgUsers();
-
-
-            foreach ($result1 as $key => $row){
-                $result2[$key] = Photo::getDataTableComments($row['id_img']);
-                $count = 0;
-                foreach ($result2[$key] as $array)
-                    $count++;
-                $count_comments[$row['id_img']]['count'] = $count;
-                $count_like[$row['id_img']]['count'] = Photo::getDataTableLike($row['id_img']);
-
-            }
-
-            //count_likes
-
-//            echo '<pre style="color: #fff;">';
-//            var_dump($result2);
-//            echo '</pre>';
-
-            require_once(ROOT . '/views/site/gallery.php');
-        }
-        else if(!isset($_SESSION['userId'])){
-            $result1 = Photo::getDataTableImgUsers();
-
-            require_once(ROOT . '/views/site/gallery.php');
-//            require_once(ROOT . '/views/site/gallery.php'); //Надо подключить галеерею с ограниченными правами
-            // пока пользователь не зарегестрируется
-        }
-        return true;
-
-    }
+//    }
 
 
     public function actionGallery_user(){
@@ -62,7 +62,19 @@ class PhotoController{
             $user = User::getUserById($userId);
 
 
-            $result1 = Photo::getDataTableImgUsers();
+            $url = $_SERVER['REQUEST_URI'];
+            $page = substr($url, 19, 3);
+            $page = intval($page);
+            $offset = ($page - 1) * 4;
+
+            //Нужно переходы делать по id!!!
+            //$offset - Не правильно пропрыгивает!
+
+
+            $result1 = Photo::getDataTableImgUsers2($offset, $userId);
+
+//            if ($result1 == NULL)
+//               continue;
 
 //            echo '<pre style="color: #fff;">';
 //
@@ -72,23 +84,34 @@ class PhotoController{
 
 
             foreach ($result1 as $key => $row){
-                $result2[$key] = Photo::getDataTableComments($row['id_img']);
-                $count = 0;
-                foreach ($result2[$key] as $array)
-                    $count++;
-                $count_comments[$row['id_img']]['count'] = $count;
-                $count_like[$row['id_img']]['count'] = Photo::getDataTableLike($row['id_img']);
+//                echo "<pre style = 'color: #fff;'>";
+//                var_dump($result);
+//                echo '<pre>';
+//                if($row['id_user'] == $userId) {
+                    $result2[$key] = Photo::getDataTableComments($row['id_img']);
+                    $count = 0;
+                    foreach ($result2[$key] as $array)
+                        $count++;
+                    $count_comments[$row['id_img']]['count'] = $count;
+                    $count_like[$row['id_img']]['count'] = Photo::getDataTableLike($row['id_img']);
+//                }
             }
             $result3['user_name_gallery'] = $user['name'];
 
-//            echo '<pre style="color: #fff;">';
-//            var_dump($result1);
-//            echo '<pre>';
+
+            $total = Photo::getTotalProducts2($userId); // Разобраться!!!
+//            $total
+            $total =  intval($total);
+            $limit = 4;
+            $index = 'page-';
+
+
+            $pagination = new Pagination($total, $page, $limit, $index);
 
             require_once(ROOT . '/views/site/gallery_user.php');
         }
-        else
-            require_once(ROOT . '/views/site/error404.php');
+//        else
+//            require_once(ROOT . '/views/site/error404.php');
 
         return true;
 
@@ -314,7 +337,67 @@ class PhotoController{
 
 
 
+    public function actionGallery_page(){
 
+//        echo $page;
+
+        if(isset($_SESSION['userId'])) {
+            $userId = $_SESSION['userId'];
+            $user = User::getUserById($userId);
+
+            $url = $_SERVER['REQUEST_URI'];
+            $page = substr($url, 14, 3);
+            $page = intval($page);
+            $offset = ($page - 1) * 4;
+
+
+            $result1 = Photo::getDataTableImgUsers1($offset);
+
+            foreach ($result1 as $key => $row) {
+                $result2[$key] = Photo::getDataTableComments($row['id_img']);
+                $count = 0;
+                foreach ($result2[$key] as $array)
+                    $count++;
+                $count_comments[$row['id_img']]['count'] = $count;
+                $count_like[$row['id_img']]['count'] = Photo::getDataTableLike($row['id_img']);
+            }
+
+
+            $total = Photo::getTotalProducts(); // Разобраться!!!
+            $limit = 4;
+            $index = 'page-';
+//            echo $total;
+
+            //Создает объект Pagination -постраничная навигация
+            $pagination = new Pagination($total, $page, $limit, $index);
+
+            require_once(ROOT . '/views/site/gallery.php');
+
+        }
+        else if(!isset($_SESSION['userId'])){
+
+            $url = $_SERVER['REQUEST_URI'];
+            $page = substr($url, 14, 3);
+            $page = intval($page);
+            $offset = ($page - 1) * 4;
+
+            $result1 = Photo::getDataTableImgUsers1($offset);
+
+
+            $total = Photo::getTotalProducts(); // Разобраться!!!
+            $limit = 4;
+            $index = 'page-';
+
+
+            $pagination = new Pagination($total, $page, $limit, $index);
+
+            require_once(ROOT . '/views/site/gallery.php');
+
+//            require_once(ROOT . '/views/site/gallery.php'); //Надо подключить галеерею с ограниченными правами
+            // пока пользователь не зарегестрируется
+        }
+        return true;
+    }
 
 
 }

@@ -1,24 +1,16 @@
 <?php include ROOT.'/views/layouts/header.php'?>
     <main>
         <div class="content_cabinet">
-            <div class="navigation">
-                <a href="/camera"><i class="fas fa-camera"></i><div class="nav_block">Camera</div></a>
-                <a href="/change_user_data"><i class="fas fa-database"></i><div class="nav_block">User data</div></a>
-                <a href="/gallery_user"><i class="far fa-image"></i><div class="nav_block">User photo</div></a>
-            </div>
+            <?php include ROOT . '/views/site/cabinet_navigation.php' ?>
             <div class="photo_bottom">
                 <a href="#">
                     <button id="do_with_camera">do with camera</button></a>
                 <a href="#">
                     <button id="upload_photo">
-<!--                        upload_photo-->
-<!--                        <form action="#" method="POST" enctype="multipart/form-data">-->
-<!--                            <input type="hidden" name="MAX_FILE_SIZE" value="30000" />-->
                         <div class="up">
                             <div class="#">upload photo</div>
                             <input type="file"  name="fileToUpload" id="fileToUpload" accept="image/png">
                         </div>
-<!-- </form>-->
                     </button>
                 </a>
                 <a href="#"><button id="save">save</button></a>

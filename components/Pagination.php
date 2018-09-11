@@ -85,7 +85,9 @@ class Pagination
         for ($page = $limits[0]; $page <= $limits[1]; $page++) {
             # Если текущая это текущая страница, ссылки нет и добавляется класс active
             if ($page == $this->current_page) {
-                $links .= '<li class="active"><a href="/catalog/page-1">' . $page . '</a></li>';
+                $links .= '<li class="active"><a href="#">' . $page . '</a></li>';
+//                echo $page;
+//                echo $links;
             } else {
                 # Иначе генерируем ссылку
                 $links .= $this->generateHtml($page);
@@ -123,10 +125,14 @@ class Pagination
         if (!$text)
             # Указываем, что текст - цифра страницы
             $text = $page;
+//        echo $text;
 
         $currentURI = rtrim($_SERVER['REQUEST_URI'], '/') . '/';
+//        echo $currentURI;
         $currentURI = preg_replace('~/page-[0-9]+~', '', $currentURI);
+//        echo $currentURI;
         # Формируем HTML код ссылки и возвращаем
+//        echo $this->index.$page;
         return
             '<li><a href="' . $currentURI . $this->index . $page . '">' . $text . '</a></li>';
     }
@@ -189,7 +195,9 @@ class Pagination
      */
     private function amount()
     {
-        # Делим и возвращаем
+//        echo $this->total;
+//        echo $this->limit;
+//        # Делим и возвращаем
         return round($this->total / $this->limit);
     }
 

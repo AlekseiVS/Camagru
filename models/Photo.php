@@ -160,16 +160,55 @@ class Photo{
 
 
 
-    static function getDataTableImgUsers(){
+//    static function getDataTableImgUsers(){
+//        $db = Db::getConnection();
+//
+//        $sql = 'SELECT * FROM img INNER JOIN users ON img.id_user = users.id';
+//
+//        $result = $db->prepare($sql);
+//        $result->execute();
+//        $result->setFetchMode(PDO::FETCH_ASSOC);
+//
+//        return $result->fetchAll();
+//
+//    }
+
+    static function getDataTableImgUsers2($offset, $id_user){
         $db = Db::getConnection();
 
-        $sql = 'SELECT * FROM img INNER JOIN users ON img.id_user = users.id';
+        $sql = 'SELECT * FROM img INNER JOIN users ON img.id_user = users.id WHERE img.id_user = '.$id_user.' LIMIT 4 OFFSET '.$offset;
 
         $result = $db->prepare($sql);
         $result->execute();
         $result->setFetchMode(PDO::FETCH_ASSOC);
 
-        return $result->fetchAll();
+
+        $result = $result->fetchAll();
+
+
+//            echo "<pre style = 'color: #fff;'>";
+//            var_dump($result);
+//            echo '<pre>';
+
+            return $result;
+
+//        foreach ($result as $value){
+//            if($value['id_user'] === $id_user)
+//                $res[] = $value;
+//        }
+
+//        echo "<pre style = 'color: #fff;'>";
+//        var_dump($res);
+//        echo '<pre>';
+
+
+
+//        echo "<pre style = 'color: #fff;'>";
+//        var_dump($result);
+//        echo '<pre>';
+//        if (!res)
+//        return $res;
+
 
     }
 
@@ -193,16 +232,33 @@ class Photo{
 
     //Сколько страниц нужно делать!!!
 
-//    static function getTotalProducts(){
-//        $db = Db::getConnection();
-//
-//        $result = $db->query('SELECT COUNT(id) AS count FROM img');
-//        $result->setFetchMode(PDO::FETCH_ASSOC);
-//        $row = $result->fetch();
-//
-//        return $row['count'];
-//
-//    }
+    static function getTotalProducts(){
+        $db = Db::getConnection();
+
+        $result = $db->query('SELECT COUNT(*) AS count FROM img');
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+        $row = $result->fetch();
+
+//        var_dump($row);
+
+        return $row['count'];
+
+    }
+
+    static function getTotalProducts2($id_user){
+        $db = Db::getConnection();
+
+//        $sql = 'SELECT * FROM likes WHERE id_img = :id_img';
+
+        $result = $db->query('SELECT COUNT(*) AS count FROM img WHERE id_user = '.$id_user);
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+        $row = $result->fetch();
+
+//        var_dump($row);
+
+        return $row['count'];
+
+    }
 
 
 }

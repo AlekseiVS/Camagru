@@ -25,6 +25,7 @@ class Router{
         //Получить строку запроса
         $uri = $this->getURI();
 
+
 //        echo $uri.'<br>';
         //Проверить наличие такого запроса в routes.php
         $res = false;
@@ -32,6 +33,8 @@ class Router{
 //        echo '<pre>';
 //        var_dump($this->routes);
 //        echo '</pre>';
+//        echo $uri;
+
         foreach ($this->routes as $uriPattern => $path) {
 
             //Сравнить (совпадения) $uriPattern и $uri
@@ -78,10 +81,11 @@ class Router{
 //                print_r($controllerObject);
 //                echo "</pre>";
 
-//                $page = substr($uri, 13, 3);
+
 //                $controllerObject->$actionName($page);
 
 //                $result = $controllerObject->$actionName($parameters);
+//                $controllerObject->$actionName();
                 call_user_func_array(array($controllerObject, $actionName), $parameters);
                 $res = true;
                 break;

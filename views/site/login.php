@@ -2,14 +2,12 @@
 <main>
     <div class="reg_form">
         <div class="errors">
-        <?php
-            if (isset($errors) && is_array($errors)): ?>
+            <?php if (isset($errors) && is_array($errors)): ?>
                 <ul>
                     <?php foreach ($errors as $error): ?>
                         <li> - <?php echo $error?></li>
                     <?php endforeach; ?>
                 </ul>
-
             <?php endif;?>
         </div>
         <div class="slogan">

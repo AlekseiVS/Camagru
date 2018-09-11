@@ -13,7 +13,7 @@
                             <div class="data_photo"><i class="far fa-calendar-check"></i><?php echo $data['date'];?></div>
                         </div>
                         <div class="img">
-                            <img src="<?php echo $data['src_img'];?>" alt="">
+                            <img src="<?php echo "../" . $data['src_img'];?>" alt="">
                         </div>
                             <div class="like_comment">
                                 <div class="like" id="<?php echo $data['id_img'];?>" onclick="showLike(this.id)">
@@ -53,6 +53,7 @@
                     </div>
                 <?php endif;?>
             <?php endforeach; ?>
+            <?php echo $pagination->get(); ?>
         </div>
     </main>
     <script src="../../template/js/gallery_like_comment.js"></script>

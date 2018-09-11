@@ -10,7 +10,7 @@
                         <div class="data_photo"><i class="far fa-calendar-check"></i><?php echo $data['date'];?></div>
                     </div>
                     <div class="img">
-                        <img src="<?php echo $data['src_img'];?>" alt="">
+                        <img src="<?php echo "../" .$data['src_img'];?>" alt="">
                     </div>
                     <?php if(isset($_SESSION['userId'])): ;?>
                         <div class="like_comment">
@@ -36,11 +36,8 @@
                                 <button class="save_comment" type="submit" value="leave your comment">Leave your comment</button>
                             </form>
                             <div class="comments"  id="comments_<?php echo $data['id_img'];?>">
-    <!--                            --><?php //print_r($result2);?>
                                 <?php foreach ($result2 as $data2) :?>
-    <!--                                --><?php //print_r($data2);?>
                                     <?php foreach ($data2 as $data3) : ?>
-    <!--                                    --><?php //print_r($data3);?>
                                         <?php if ($data3['id_img'] === $data['id_img']) : ?>
                                             <div class="comment">
                                                 <div class="user_name_left_comment" ><?php echo $data3['user_name']?></div>
@@ -52,13 +49,12 @@
                             </div>
                         </div>
                     </div>
-            <?php endif;?>
+                <?php endif;?>
             <?php endforeach; ?>
-<!--            --><?php //echo $pagination->get(); ?>
+            <?php echo $pagination->get(); ?>
         </div>
 
     </main>
-<!--    <script src="../../template/js/pagination.js"></script>-->
     <script src="../../template/js/gallery_like_comment.js"></script>
     <script src="../../template/js/save_comments.js"></script>
     <script src="../../template/js/save_like.js"></script>

@@ -5,7 +5,7 @@ return array(
 //    'category/([0-9]+)/page-([0-9]+)' => 'catalog/category/$1/$2', //actionCategory CatalogController
 
 
-    'catalog/page-([0-9]+)' => 'catalog/page/$1', //actionCategory CatalogController
+
 //    'catalog' => 'catalog/catalog/$1', //actionCategory CatalogController
 
 
@@ -31,9 +31,14 @@ return array(
 
 
 
-    '^gallery$' => 'photo/gallery', //actionGallery  PhotoController
+//    '^gallery$' => 'photo/gallery', //actionGallery  PhotoController
 
 //    '^gallery$' => 'catalog/catalog/page-1', //actionCategory CatalogController
+
+    '^gallery/page-([0-9]+)$' => 'photo/gallery_page', //actionCategory CatalogController
+//    '^gallery$' => 'photo/gallery_page', //actionCategory CatalogController
+//    '^page-([0-9]+)$' => 'photo/gallery_page', //actionCategory CatalogController
+//    '^gallery_user$' => 'photo/gallery_user', //actionGallery_user  PhotoController
 
     '^cabinet$' => 'photo/cabinet', //actionCabinet  PhotoController
     '^camera$' => 'photo/camera', //actionCamera  PhotoController
@@ -45,7 +50,11 @@ return array(
 
 //    '^camera_upload$' => 'photo/camera_upload', //actionCamera_upload  PhotoController
 
-    '^gallery_user$' => 'photo/gallery_user', //actionGallery_user  PhotoController
+
+    '^gallery_user/page-([0-9]+)$' => 'photo/gallery_user', //actionGallery_user  PhotoController
+
+
+
     '^del_user_photo_block$' => 'photo/del_user_photo_block', //actionGallery_user  PhotoController
 
 
