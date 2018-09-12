@@ -138,6 +138,8 @@ main .reg_form form input{
 }
 
 .errors button{
+    font-family: Roboto!important;
+    font-weight: 300!important;
     border: 0;
     width: 100%;
     height: 45px;

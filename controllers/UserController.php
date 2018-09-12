@@ -11,7 +11,7 @@ class UserController
 
 
         if (isset($_POST['submit'])) {
-            $name = $_POST['name'];
+            $name = htmlentities($_POST['name'], ENT_HTML5);
             $email = $_POST['email'];
             $password = $_POST['password'];
 
@@ -32,16 +32,16 @@ class UserController
             if ($errors == false) {
 
                 $token = User::createToken();
+                $password = md5($password);
                 $result = User::register($name, $email, $password, $token);
 
-                $r = User::sendLinkConfirmToEmail($email, $token);
-                var_dump($r);
+                User::sendLinkConfirmToEmail($email, $token);
 
             }
 
         }
         else if (isset($_SESSION['userId'])) {
-            header("Location: /error404");
+            header("Location: /you_are_registration");
         }
 
         require_once(ROOT . '/views/site/register.php');
@@ -69,8 +69,9 @@ class UserController
                 $errors[] = 'Password must not be shorter than 6 characters';
             }
 
+
             $userId = User::checkUserData($email, $password);
-            $statusUser = User::checkSatatus($email);
+            $statusUser = User::checkStatus($email);
 
             if ($userId == false) {
                 // Если данные неправильные - показываем ошибку
@@ -88,7 +89,7 @@ class UserController
 
         }
         else if (isset($_SESSION['userId'])) {
-            header("Location: /error404");
+            header("Location: /you_are_registration");
         }
 
         require_once(ROOT . '/views/site/login.php');
@@ -97,7 +98,7 @@ class UserController
     }
 
 
-    public function actionForgot()
+    public function actionForgot_password()
     {
         $email = '';
         $result = false;
@@ -118,12 +119,11 @@ class UserController
                 $result = User::sendPasswordToEmail($userData);
             }
         }
-
-        if (isset($_SESSION['userId'])) {
-            header("Location: /error404");
-        } else {
-            require_once(ROOT . '/views/site/forgot.php');
+        else if (isset($_SESSION['userId'])) {
+            header("Location: /you_are_registration");
         }
+
+        require_once(ROOT . '/views/site/forgot.php');
 
         return true;
     }
@@ -142,7 +142,6 @@ class UserController
             $token = $_GET['token'];
 
             $result = User::confirmLinkThroughEmailToken($email, $token);
-            var_dump($result);
             if ($result) {
                 User::changeStatus($email);
                 header("Location: /login");
@@ -150,6 +149,7 @@ class UserController
         }
         header("Location: /login");
     }
+
 
 
     public function actionLogout()
@@ -171,6 +171,28 @@ class UserController
             require_once(ROOT . '/views/site/error404.php');
         }
         require_once(ROOT . '/views/site/error404.php');
+
+        return true;
+    }
+
+
+    public function actionYou_are_registration()
+    {
+        if (isset($_SESSION['userId'])) {
+            $userId = $_SESSION['userId'];
+            $user = User::getUserById($userId);
+
+            require_once(ROOT . '/views/site/you_are_registration.php');
+        }
+        return true;
+    }
+
+
+    public function actionYou_are_not_registration()
+    {
+        if (!isset($_SESSION['userId'])) {
+            require_once(ROOT . '/views/site/you_are_not_registration.php');
+        }
         return true;
     }
 
@@ -203,7 +225,7 @@ class UserController
                 }
 
                 if($errors == false){
-                    $result = User::editName($userId, $name);
+                    $result = User::editName($userId, htmlentities($name, ENT_HTML5));
                 }
             }
 
@@ -234,20 +256,10 @@ class UserController
             }
             require_once(ROOT . '/views/site/change_user_data.php');
         }
-//        if(isset($_SESSION['userId']))
-//        {
-//            require_once(ROOT . '/views/site/change_user_data.php');
-//        }
-        else// if(!isset($_SESSION['userId'])) {
-            require_once(ROOT . '/views/site/error404.php');
-        //}
-        // переделать на пользователь не авторизирован,
-        // сделать это на всех страницах кабинета + сделать пользователь уже авторизирован
-        // на страницах с регистрацией и авторизацикй вместо страницы 404!!!
+        else if(!isset($_SESSION['userId']))
+            header("Location: /you_are_not_registration");
 
         return true;
-
-
     }
 
 

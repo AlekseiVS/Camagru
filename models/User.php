@@ -1,5 +1,6 @@
 <?php
 class User{
+
     public static function register($name, $email, $password, $token){
         $db = Db::getConnection();
 
@@ -28,9 +29,6 @@ class User{
 
 
 
-
-
-
 //--------------------------Edit user data--------------------------------------------
 
 
@@ -53,9 +51,7 @@ class User{
     {
         $db = Db::getConnection();
 
-
         $sql = "UPDATE users SET password = :password WHERE id = :id";
-//        $sql = "UPDATE users SET name = :name, password = :password, email = :email  WHERE id = :id";
 
         $result = $db->prepare($sql);
         $result->bindParam(':id', $id, PDO::PARAM_INT);
@@ -68,9 +64,7 @@ class User{
     {
         $db = Db::getConnection();
 
-
         $sql = "UPDATE users SET email = :email WHERE id = :id";
-//        $sql = "UPDATE users SET name = :name, password = :password, email = :email  WHERE id = :id";
 
         $result = $db->prepare($sql);
         $result->bindParam(':id', $id, PDO::PARAM_INT);
@@ -81,15 +75,11 @@ class User{
 
 //------------------------------------------------------------------------------------------
 
-
-
-
-
-
-
     public static function checkUserData($email, $password)
     {
         $db = Db::getConnection();
+
+        $password = md5($password);
 
         $sql = 'SELECT * FROM users WHERE email = :email AND password = :password';
 
@@ -107,7 +97,7 @@ class User{
     }
 
 
-    public static function checkSatatus($email)
+    public static function checkStatus($email)
     {
         $db = Db::getConnection();
 
@@ -135,7 +125,6 @@ class User{
 
         $result = $db->prepare($sql);
         $result->bindParam(':email', $email, PDO::PARAM_INT);
-//        $result->bindParam(':password', $password, PDO::PARAM_INT);
         $result->execute();
 
         $userData = $result->fetch();
@@ -208,8 +197,6 @@ class User{
             'Reply-To: osokoliu@gmail.com' . "\r\n" .
             'X-Mailer: PHP/' . phpversion();
 
-//        var_dump($to)."/n";
-//        var_dump($message);
         if(mail($to, $subject, $message, $headers)){
             return true;
         }
@@ -220,33 +207,10 @@ class User{
 
 
 
-
-
-
     public static function auth($userId)
     {
         $_SESSION['userId'] = $userId;
     }
-//
-//    public static function checkLogged()
-//    {
-//        // Если сессия есть, вернем идентификатор пользователя
-//        if (isset($_SESSION['user'])) {
-//            return $_SESSION['user'];
-//        }
-//
-//        header("Location: login");
-//    }
-//
-//    public static function isGuest()
-//    {
-//        if (isset($_SESSION['userId'])) {
-//            return false;
-//        }
-//        return true;
-//    }
-
-
 
 
 
@@ -271,14 +235,6 @@ class User{
         }
         return false;
     }
-
-
-
-
-
-
-
-
 
 
     public static function checkEmailExists($email){

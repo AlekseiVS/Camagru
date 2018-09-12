@@ -8,52 +8,68 @@ class PhotoController{
 
             header('Location: /change_user_data');
         }
-
-        require_once(ROOT . '/views/site/error404.php');
+        else
+            header('Location: /you_are_not_registration');
 
         return true;
 
     }
 
-//    public function actionGallery(){
-//
-//        if (isset($_SESSION['userId'])) {
-//            $userId = $_SESSION['userId'];
-//            $user = User::getUserById($userId);
-//
-////            echo $parameters[0];
-//
-//            $result1 = Photo::getDataTableImgUsers();
-//
-//
-//            foreach ($result1 as $key => $row){
-//                $result2[$key] = Photo::getDataTableComments($row['id_img']);
-//                $count = 0;
-//                foreach ($result2[$key] as $array)
-//                    $count++;
-//                $count_comments[$row['id_img']]['count'] = $count;
-//                $count_like[$row['id_img']]['count'] = Photo::getDataTableLike($row['id_img']);
-//
-//            }
-//
-//            //count_likes
-//
-////            echo '<pre style="color: #fff;">';
-////            var_dump($result2);
-////            echo '</pre>';
-//
-//            require_once(ROOT . '/views/site/gallery.php');
-//        }
-//        else if(!isset($_SESSION['userId'])){
-//            $result1 = Photo::getDataTableImgUsers();
-//
-//            require_once(ROOT . '/views/site/gallery.php');
-////            require_once(ROOT . '/views/site/gallery.php'); //Надо подключить галеерею с ограниченными правами
-//            // пока пользователь не зарегестрируется
-//        }
-//        return true;
 
-//    }
+
+    public function actionGallery_page(){
+
+        if(isset($_SESSION['userId'])) {
+            $userId = $_SESSION['userId'];
+            $user = User::getUserById($userId);
+
+            $url = $_SERVER['REQUEST_URI'];
+            $page = substr($url, 14, 3);
+            $page = intval($page);
+            $offset = ($page - 1) * 4;
+
+
+            $result1 = Photo::getDataTableImgUsersGalleryPage($offset);
+
+            foreach ($result1 as $key => $row) {
+                $result2[$key] = Photo::getDataTableComments($row['id_img']);
+                $count = 0;
+                foreach ($result2[$key] as $array)
+                    $count++;
+                $count_comments[$row['id_img']]['count'] = $count;
+                $count_like[$row['id_img']]['count'] = Photo::getDataTableLike($row['id_img']);
+            }
+
+            $total = Photo::getTotalProductsGalleryPage();
+            $limit = 4;
+            $index = 'page-';
+
+            $pagination = new Pagination($total, $page, $limit, $index);
+
+            require_once(ROOT . '/views/site/gallery.php');
+
+        }
+        else if(!isset($_SESSION['userId'])){
+
+            $url = $_SERVER['REQUEST_URI'];
+            $page = substr($url, 14, 3);
+            $page = intval($page);
+            $offset = ($page - 1) * 4;
+
+            $result1 = Photo::getDataTableImgUsersGalleryPage($offset);
+
+            $total = Photo::getTotalProductsGalleryPage();
+            $limit = 4;
+            $index = 'page-';
+
+            $pagination = new Pagination($total, $page, $limit, $index);
+
+            require_once(ROOT . '/views/site/gallery.php');
+        }
+        return true;
+    }
+
+
 
 
     public function actionGallery_user(){
@@ -61,33 +77,14 @@ class PhotoController{
             $userId = $_SESSION['userId'];
             $user = User::getUserById($userId);
 
-
             $url = $_SERVER['REQUEST_URI'];
             $page = substr($url, 19, 3);
             $page = intval($page);
             $offset = ($page - 1) * 4;
 
-            //Нужно переходы делать по id!!!
-            //$offset - Не правильно пропрыгивает!
-
-
-            $result1 = Photo::getDataTableImgUsers2($offset, $userId);
-
-//            if ($result1 == NULL)
-//               continue;
-
-//            echo '<pre style="color: #fff;">';
-//
-//            var_dump($result1);
-//            echo $_SESSION['useId'];
-//            echo '<pre>';
-
+            $result1 = Photo::getDataTableImgUsersGalleryUser($offset, $userId);
 
             foreach ($result1 as $key => $row){
-//                echo "<pre style = 'color: #fff;'>";
-//                var_dump($result);
-//                echo '<pre>';
-//                if($row['id_user'] == $userId) {
                     $result2[$key] = Photo::getDataTableComments($row['id_img']);
                     $count = 0;
                     foreach ($result2[$key] as $array)
@@ -98,42 +95,41 @@ class PhotoController{
             }
             $result3['user_name_gallery'] = $user['name'];
 
-
-            $total = Photo::getTotalProducts2($userId); // Разобраться!!!
-//            $total
+            $total = Photo::getTotalProductsGalleryUser($userId);
             $total =  intval($total);
             $limit = 4;
             $index = 'page-';
-
 
             $pagination = new Pagination($total, $page, $limit, $index);
 
             require_once(ROOT . '/views/site/gallery_user.php');
         }
-//        else
-//            require_once(ROOT . '/views/site/error404.php');
-
         return true;
-
     }
 
 
-    public function actionCamera(){
+    ////////////////////////////////////////////////////////
+
+
+    public function actionCamera_view(){
 
         if (isset($_SESSION['userId'])) {
             $userId = $_SESSION['userId'];
             $user = User::getUserById($userId);
 
-            require_once(ROOT . '/views/site/camera.php');//Подключить страницу камеры!!!
+            require_once(ROOT . '/views/site/camera.php');
         }
         else
-            require_once(ROOT . '/views/site/error404.php');
+           header('Location: /you_are_not_registration');
 
         return true;
 
     }
 
-
+///////////////////////////////////////////////////////////
+///
+///
+///
     public function actionCamera_make(){
 
         if (isset($_SESSION['userId']) && isset($_POST['overlay'])) {
@@ -155,13 +151,8 @@ class PhotoController{
             echo "data:image/png;base64," . base64_encode($image_data);
 
         }
-        else if(isset($_SESSION['userId'])){
-            $userId = $_SESSION['userId'];
-            $user = User::getUserById($userId);
-            require_once(ROOT . '/views/site/error404.php');
-        }
         else
-            require_once(ROOT . '/views/site/error404.php');
+            header('Location: /error404');
 
 
         return true;
@@ -175,13 +166,6 @@ class PhotoController{
         if (isset($_SESSION['userId']) && isset($_POST['photo'])) {
             $userId = $_SESSION['userId'];
             $user = User::getUserById($userId);
-
-
-            //Разобраться с этой проверкой!!!
-//            $checkPng = explode(".", $_POST['photo']);
-//            if ($checkPng[1] === "png") {
-//                exit;
-//            }
 
             $img = preg_replace("/^.+base64,/", "", $_POST['photo']);
             $img = str_replace(' ','+',$img);
@@ -200,22 +184,13 @@ class PhotoController{
 
 
         }
-        else if(isset($_SESSION['userId'])){
-            $userId = $_SESSION['userId'];
-            $user = User::getUserById($userId);
-            require_once(ROOT . '/views/site/error404.php');
-        }
         else
-            require_once(ROOT . '/views/site/error404.php');
+            header('Location: /error404');
+
 
         return true;
 
     }
-
-
-
-
-
 
 
     public function actionComment_save(){
@@ -225,7 +200,7 @@ class PhotoController{
             $user = User::getUserById($userId);
 
 //          записать в БД id_img/user_id/comment в table comments
-            Photo::saveIdImgUserNameCommentToTableComments($user['name'], $_POST['img_id'], $_POST['comment']);
+            Photo::saveIdImgUserNameCommentToTableComments($user['name'], $_POST['img_id'], htmlentities($_POST['comment'], ENT_HTML5));
 
             $result = [
                 'name' => $user['name'],
@@ -233,15 +208,9 @@ class PhotoController{
             ];
 
             echo json_encode($result);
-//          echo $_POST['comment']; Спросить у макса или так правильно или нет?
-        }
-        else if(isset($_SESSION['userId'])){
-            $userId = $_SESSION['userId'];
-            $user = User::getUserById($userId);
-            require_once(ROOT . '/views/site/error404.php');
         }
         else
-            require_once(ROOT . '/views/site/error404.php');
+            header('Location: /error404');
 
         return true;
 
@@ -266,13 +235,8 @@ class PhotoController{
             echo json_encode($count);
 
         }
-        else if(isset($_SESSION['userId'])){
-            $userId = $_SESSION['userId'];
-            $user = User::getUserById($userId);
-            require_once(ROOT . '/views/site/error404.php');
-        }
         else
-            require_once(ROOT . '/views/site/error404.php');
+            header('Location: /error404');
 
         return true;
 
@@ -295,27 +259,19 @@ class PhotoController{
                 }
             }
 
-//            var_dump($array_id);
-
             if(isset($array_id) && $array_id != '')
                 echo json_encode($array_id);
             else
                 echo 'error';
 
+
         }
         else
-            echo 'error';//if(!isset($_SESSION['userId'])){
-//            $userId = $_SESSION['userId'];
-//            $user = User::getUserById($userId);
-//            require_once(ROOT . '/views/site/gallery.php');
-//        }
-//        else
-//            require_once(ROOT . '/views/site/error404.php');
+            echo 'error';
 
         return true;
 
     }
-
 
 
     public function actionDel_user_photo_block(){
@@ -331,73 +287,14 @@ class PhotoController{
 
             echo $img_id;
         }
+        else
+            header('Location: /error404');
         return true;
     }
 
 
 
 
-    public function actionGallery_page(){
-
-//        echo $page;
-
-        if(isset($_SESSION['userId'])) {
-            $userId = $_SESSION['userId'];
-            $user = User::getUserById($userId);
-
-            $url = $_SERVER['REQUEST_URI'];
-            $page = substr($url, 14, 3);
-            $page = intval($page);
-            $offset = ($page - 1) * 4;
-
-
-            $result1 = Photo::getDataTableImgUsers1($offset);
-
-            foreach ($result1 as $key => $row) {
-                $result2[$key] = Photo::getDataTableComments($row['id_img']);
-                $count = 0;
-                foreach ($result2[$key] as $array)
-                    $count++;
-                $count_comments[$row['id_img']]['count'] = $count;
-                $count_like[$row['id_img']]['count'] = Photo::getDataTableLike($row['id_img']);
-            }
-
-
-            $total = Photo::getTotalProducts(); // Разобраться!!!
-            $limit = 4;
-            $index = 'page-';
-//            echo $total;
-
-            //Создает объект Pagination -постраничная навигация
-            $pagination = new Pagination($total, $page, $limit, $index);
-
-            require_once(ROOT . '/views/site/gallery.php');
-
-        }
-        else if(!isset($_SESSION['userId'])){
-
-            $url = $_SERVER['REQUEST_URI'];
-            $page = substr($url, 14, 3);
-            $page = intval($page);
-            $offset = ($page - 1) * 4;
-
-            $result1 = Photo::getDataTableImgUsers1($offset);
-
-
-            $total = Photo::getTotalProducts(); // Разобраться!!!
-            $limit = 4;
-            $index = 'page-';
-
-
-            $pagination = new Pagination($total, $page, $limit, $index);
-
-            require_once(ROOT . '/views/site/gallery.php');
-
-//            require_once(ROOT . '/views/site/gallery.php'); //Надо подключить галеерею с ограниченными правами
-            // пока пользователь не зарегестрируется
-        }
-        return true;
-    }
 
 
 }

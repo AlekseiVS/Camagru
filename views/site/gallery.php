@@ -4,9 +4,7 @@
             <?php foreach ($result1 as $data): ?>
                 <div class="user_block">
                     <div class="user_name_time">
-
                         <div class="user_name"><i class="far fa-user"></i><?php echo $data['name'];?></div>
-
                         <div class="data_photo"><i class="far fa-calendar-check"></i><?php echo $data['date'];?></div>
                     </div>
                     <div class="img">
@@ -48,12 +46,11 @@
                                 <?php endforeach;?>
                             </div>
                         </div>
-                    </div>
-                <?php endif;?>
+                    <?php endif;?>
+                </div>
             <?php endforeach; ?>
             <?php echo $pagination->get(); ?>
         </div>
-
     </main>
     <script src="../../template/js/gallery_like_comment.js"></script>
     <script src="../../template/js/save_comments.js"></script>
