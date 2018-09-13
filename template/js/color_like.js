@@ -22,22 +22,13 @@ window.onload = function(){
         xhr.onreadystatechange = function () {
             if (this.readyState != 4) return;
 
-            // console.log(xhr.responseText);
-            //
-            // if(xhr.responseText == "error404"){
-            //     window.location.href = "/error404";
-            // }
-            // else if(xhr.responseText == ""){
-            //     window.location.href = "/gallery";
-            // }
             if(xhr.responseText != 'error'){
                 var res = JSON.parse(xhr.responseText);
-                // console.log(res);
 
                 var i = 0;
                 while (res[i]) {
-                document.getElementById(res[i]).style.backgroundColor = '#FF473A';
-                i++;
+                    document.getElementById(res[i]).style.backgroundColor = '#FF473A';
+                    i++;
                 }
             }
         }

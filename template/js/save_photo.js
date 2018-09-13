@@ -10,7 +10,6 @@ document.getElementById('save').addEventListener('click', function() {
 
     xhr.onreadystatechange = function() {
         if (this.readyState != 4) return;
-        // console.log(xhr.responseText);
         alert(xhr.responseText);
     };
 

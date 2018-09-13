@@ -6,7 +6,6 @@
             <?php if($result){ ?>
                 <div class="congratulations_header">Congratulations!</div>
                 <div class="congratulations_text">To confirm the registration, click on the link that we sent to you by email adress</div>
-<!--                <a href="http://localhost:8080/login"><button>Log in</button></a>-->
             <?php } else{
             if (isset($errors) && is_array($errors)): ?>
                 <ul>

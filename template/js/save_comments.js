@@ -5,12 +5,9 @@ function checkEvent(form){
     var img_id = form.id_img.value;
     var comments = document.getElementById('comments_' + img_id);
 
-
     var count_comments = document.getElementById('count_comments_' + img_id).innerHTML;
     count_comments++;
     document.getElementById('count_comments_' + img_id).innerHTML = count_comments;
-
-    //count_likes
 
 
     var xhr = new XMLHttpRequest();
@@ -24,9 +21,9 @@ function checkEvent(form){
         if (this.readyState != 4) return;
 
         form.comment.value = "";
-        // console.log(xhr.responseText);
+
         var res = JSON.parse(xhr.responseText);
-        // console.log(res);
+
         var div = document.createElement('div');
         div.className = "comment";
         div.innerHTML = "<div class='user_name_left_comment'>" + res.name + ":</div>" +

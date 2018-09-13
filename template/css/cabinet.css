@@ -5,16 +5,12 @@
 
 .content_cabinet{
     width: 100%;
-    height: 100%;
-    /*min-width: 810px;*/
-    min-width: 700px;
+    min-height: 1100px;
     background:rgba(255,255,255, 0.8);
     float: left;
 }
 
 .navigation{
-    /*min-width: 810px;*/
-    min-width: 700px;
     width: 80%;
     padding: 0 10% 0 10%;
     margin: 0 auto;
@@ -48,7 +44,6 @@
 }
 
 
-/*analog main .reg_form -> main.css*/
 .content_cabinet .content_change_data_user{
     margin: 0 auto;
     margin-top: 150px;
@@ -59,7 +54,6 @@
 }
 
 
-/*analog main .reg_form form -> main.css*/
 .content_cabinet .content_change_data_user form{
     text-align: center;
     width: 300px;
@@ -68,7 +62,6 @@
 }
 
 
-/*analog main .reg_form form input -> main.css*/
 .content_cabinet .content_change_data_user form input{
     font-family: Roboto;
     font-weight: 300;
@@ -82,7 +75,7 @@
     float: left;
     margin-bottom: 1px;
 }
-/*analog main .reg_form form input[type="submit"] -> main.css*/
+
 .content_cabinet .content_change_data_user form input[type="submit"]{
     border: 0;
     width: 30%;
@@ -94,7 +87,7 @@
     margin-left: 1px;
 }
 
-/*analog main .reg_form form input[type="submit"]:hover -> main.css*/
+
 .content_cabinet .content_change_data_user form input[type="submit"]:hover{
     background-color: #868686;
     transition: 0.9s
@@ -104,8 +97,6 @@
 button{outline:none;}
 
 .photo_bottom{
-    /*min-width: 810px;*/
-    min-width: 700px;
     width: 80%;
     padding: 0 10% 0 10%;
     margin: 0 auto;
@@ -132,7 +123,7 @@ button{outline:none;}
     color: #FFF;
     cursor: pointer;
 }
-/*--------------------------------------------------------------------------------*/
+
 .photo_bottom button{
     padding: 0;
     width: 100%;
@@ -163,34 +154,6 @@ button{outline:none;}
 }
 
 
-
-/*.photo_bottom button form{*/
-    /*padding: 0;*/
-    /*width: 100%;*/
-    /*height: 100%;*/
-    /*font-size: 22px;*/
-    /*font-weight: 100;*/
-    /*background-color: #868686;*/
-    /*color: #FFF;*/
-    /*cursor: pointer;*/
-
-/*}*/
-
-/*.photo_bottom button input[type=file]{*/
-    /*padding: 0;*/
-    /*width: 100%;*/
-    /*height: 100%;*/
-    /*font-size: 22px;*/
-    /*font-weight: 100;*/
-    /*background-color: #868686;*/
-    /*color: #FFF;*/
-    /*cursor: pointer;*/
-    /*outline:none;*/
-    /*!*opacity:0;*!*/
-/*}*/
-
-/*----------------------------------------------------------------------*/
-
 .photo_bottom button:hover, .photo_bottom button input[type=file]:hover{
     background-color: #FF473A;
     transition: 0.9s;
@@ -198,8 +161,6 @@ button{outline:none;}
 
 
 .content_camera{
-    /*min-width: 810px;*/
-    min-width: 700px;
     width: 80%;
     padding: 0 10% 0 10%;
     margin: 0 auto;
@@ -212,25 +173,17 @@ button{outline:none;}
 }
 
 .make_photo, .show_photo{
-    width: 398px;
+    width: 379px;
     height: 300px;
     display: flex;
-    /*justify-content: center;*/
     border: 3px solid #868686;
-    /*flex-wrap: wrap;*/
 }
 
-.make_photo .overlay{
-    /*display: none;*/
-    position: absolute;
-    width: 400px;
-    height: 300px;
-}
 
 .make_photo .overlay{
     position: absolute;
-    width: 400px;
-    height: 300px;
+    width: 379px;
+    height: 283px;
 }
 
 
@@ -238,18 +191,17 @@ button{outline:none;}
 
 
 .make_photo .overlay, .show_photo,  img{
-    width: 400px;
+    width:379px;
     height: 300px;
 }
 
  img{
-    width: 400px;
-    height: 300px;
+    width: 379px;
+    height: 283px;
 }
 
 
 .patterns{
-    min-width: 700px;
     width: 80%;
     padding: 0 10% 0 10%;
     margin-top: 20px;
@@ -266,6 +218,7 @@ button{outline:none;}
 
 .patterns a{
     width: 9.1%;
+    min-width:100px;
     height: auto;
     display: flex;
     justify-content: center;
@@ -293,25 +246,6 @@ button{outline:none;}
     /*height: 100%;*/
 }
 
-/*canvas{*/
-    /*width: 400px;*/
-    /*height: 300px;*/
-/*}*/
-
-/*button #capture{*/
-    /*position: absolute;*/
-    /*padding: 0;*/
-    /*width: 25%;*/
-    /*height: 47px;*/
-    /*display: flex;*/
-    /*justify-content: center;*/
-    /*font-size: 22px;*/
-    /*font-weight: 100;*/
-    /*background-color: #868686;*/
-    /*color: #FFF;*/
-    /*cursor: pointer;*/
-/*}*/
-
 .content_camera button{
     display: none;
     margin-top: 255px;
@@ -336,10 +270,32 @@ button{outline:none;}
 #canvas {
     display: none;
 }
-/*.make_photo, .show_photo{*/
-    /*width: 49.5%;*/
-    /*height: 300px;*/
-    /*display: flex;*/
-    /*justify-content: center;*/
-    /*border: 1px solid #FF473A;*/
-/*}*/
+
+@media screen and (max-width: 640px) {
+
+
+    .navigation{
+        width: 80%;
+        padding: 0 10% 0 10%;
+        margin: 0 auto;
+        margin-top: 30px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        align-content: stretch;
+        font-size: 22px;
+        font-weight: 300;
+    }
+
+    .navigation a{
+        width: 100%;
+        margin-bottom: 0.2%;
+    }
+
+    .photo_bottom a{
+        width: 100%;
+    }
+
+}

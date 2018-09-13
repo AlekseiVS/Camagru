@@ -71,6 +71,7 @@ class UserController
 
 
             $userId = User::checkUserData($email, $password);
+
             $statusUser = User::checkStatus($email);
 
             if ($userId == false) {
@@ -116,7 +117,7 @@ class UserController
             }
             if ($errors == false) {
                 $userData = User::getUserByEmail($email);
-                $result = User::sendPasswordToEmail($userData);
+                $result = User::sendLinkChangeDataUser($email, $userData['token']);
             }
         }
         else if (isset($_SESSION['userId'])) {
@@ -127,6 +128,36 @@ class UserController
 
         return true;
     }
+
+
+
+    public function actionChange_data()
+    {
+        $result = false;
+
+        $email = '';
+        $token = '';
+        $password = '';
+
+        if (isset($_GET['email']) && $_GET['token']) {
+            $email = $_GET['email'];
+            $token = $_GET['token'];
+
+            $result = User::confirmLinkThroughEmailToken($email, $token);
+
+            if ($result) {
+                $userData = User::getUserByEmail($email);
+                $_SESSION['userId'] = $userData['id'];
+
+                header("Location: /change_user_data");
+            }
+        }
+        else
+            header("Location: /forgot_password");
+        return true;
+    }
+
+
 
 
     public function actionConfirm()
@@ -149,6 +180,9 @@ class UserController
         }
         header("Location: /login");
     }
+
+
+
 
 
 
@@ -197,12 +231,6 @@ class UserController
     }
 
 
-
-
-
-
-
-
     public function actionChange_user_data(){
         $name = '';
         $email = '';
@@ -230,7 +258,7 @@ class UserController
             }
 
             if (isset($_POST['submit']) && isset($_POST['email'])) {
-                if (!User::checkName( $_POST['email'])) {
+                if (!User::checkEmail( $_POST['email'])) {
                     $errors[] = 'Invalid email address';
                 }
                 else{
@@ -238,12 +266,12 @@ class UserController
                 }
 
                 if($errors == false){
-                    $result = User::editName($userId, $email);
+                    $result = User::editEmail($userId, $email);
                 }
             }
 
             if (isset($_POST['submit']) && isset($_POST['password'])) {
-                if (!User::checkName( $_POST['password'])) {
+                if (!User::checkPassword( $_POST['password'])) {
                     $errors[] = 'The name can not be less than two characters';
                 }
                 else{
@@ -251,7 +279,7 @@ class UserController
                 }
 
                 if($errors == false){
-                    $result = User::editName($userId, $password);
+                    $result = User::editPassword($userId, $password);
                 }
             }
             require_once(ROOT . '/views/site/change_user_data.php');

@@ -47,19 +47,6 @@ class User{
 
 
 
-    public static function editPassword($id, $password)
-    {
-        $db = Db::getConnection();
-
-        $sql = "UPDATE users SET password = :password WHERE id = :id";
-
-        $result = $db->prepare($sql);
-        $result->bindParam(':id', $id, PDO::PARAM_INT);
-        $result->bindParam(':password', $password, PDO::PARAM_STR);
-        return $result->execute();
-    }
-
-
     public static function editEmail($id, $email)
     {
         $db = Db::getConnection();
@@ -70,6 +57,22 @@ class User{
         $result->bindParam(':id', $id, PDO::PARAM_INT);
         $result->bindParam(':email', $email, PDO::PARAM_STR);
 
+        return $result->execute();
+    }
+
+
+
+    public static function editPassword($id, $password)
+    {
+        $db = Db::getConnection();
+
+        $password = md5($password);
+
+        $sql = "UPDATE users SET password = :password WHERE id = :id";
+
+        $result = $db->prepare($sql);
+        $result->bindParam(':id', $id, PDO::PARAM_INT);
+        $result->bindParam(':password', $password, PDO::PARAM_STR);
         return $result->execute();
     }
 
@@ -89,7 +92,7 @@ class User{
         $result->execute();
 
         $user = $result->fetch();
-        var_dump($user);
+
         if ($user) {
             return $user['id'];
         }
@@ -193,6 +196,24 @@ class User{
         $to = $email;
         $subject = 'Confirm registration';
         $message = 'Your link confirm: http://localhost:8080/confirm/?email='.$email.'&token='.$token;
+        $headers = 'From: osokoliu@gmail.com' . "\r\n" .
+            'Reply-To: osokoliu@gmail.com' . "\r\n" .
+            'X-Mailer: PHP/' . phpversion();
+
+        if(mail($to, $subject, $message, $headers)){
+            return true;
+        }
+        else
+            return false;
+
+    }
+
+
+
+    public static function sendLinkChangeDataUser($email, $token){
+        $to = $email;
+        $subject = 'Confirm registration';
+        $message = 'Your link confirm: http://localhost:8080/change_data/?email='.$email.'&token='.$token;
         $headers = 'From: osokoliu@gmail.com' . "\r\n" .
             'Reply-To: osokoliu@gmail.com' . "\r\n" .
             'X-Mailer: PHP/' . phpversion();

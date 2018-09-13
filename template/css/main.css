@@ -2,7 +2,7 @@ body{
     font-family: Roboto;
     margin: 0;
     padding: 0;
-    min-width: 810px;
+    min-height: 1100px;
     background: url("/template/image/main_background.png");
 }
 
@@ -11,8 +11,6 @@ header{
     padding: 1.2% 10% 0.7% 10%;
     height: auto;
     float: left;
-    /*min-width: 810px;*/
-    min-width: 700px;
     font-weight: 300;
     color: white;
     background: rgba(255,255,255,0.3);
@@ -34,7 +32,7 @@ ul a{
 }
 
 .log_reg{
-    width: 50%;
+    width: 80%;
     height:auto;
     float: right;
 }
@@ -60,13 +58,11 @@ ul a{
 
 .log_reg ul li .fa-user, .fa-sign-out-alt, .fa-sign-in-alt, .fa-images{
     margin-right: 5px;
-    /*color: #003dd8;*/
 }
 
 main{
     width: 100%;
-    min-height: 1000px;
-    height: calc(100vh - 51.66px - 44.59px);
+    min-height: 1100px;
     float: left;
 }
 
@@ -109,8 +105,6 @@ main .reg_form{
     width: 250px;
     height: auto;
     position: relative;
-    /*color: white;*/
-    /*text-align: center;*/
 }
 
 .slogan{
@@ -177,7 +171,6 @@ main .reg_form form input[type="submit"]:hover{
 .reg_form form .have_account{
     text-align: left;
     width: 87%;
-    /*padding: 7% 7% 0% 0%;*/
     margin-top: 10px;
     font-size: 14px;
     font-weight: 100;
@@ -200,9 +193,8 @@ main .reg_form form input[type="submit"]:hover{
 footer{
     width: 80%;
     padding: 1% 10% 0.6% 10%;
-    height: auto;
+    height: 30px;
     float: left;
-    min-width: 700px;
     font-weight: 300;
     color: white;
     overflow:hidden;
@@ -212,3 +204,73 @@ footer{
 footer .copyright{float: left;  }
 
 footer .made_by{float: right;}
+
+
+
+@media screen and (max-width: 479px) {
+    .logo{
+        margin-top: 5px;
+        width: 100%;
+        height: auto;
+        float: left;
+        text-align: center;
+        font-size: 28px;
+        font-weight: 400;
+    }
+
+    .log_reg{
+        width: 100%;
+        height:auto;
+        float: left;
+        margin-top: 10px;
+        text-align: center;
+    }
+
+    .log_reg ul{
+        margin-bottom: 10px;
+        float: left;
+
+    }
+
+    .log_reg ul li{
+        margin: 5px;
+        display: inline;
+        list-style-type: none;
+        cursor: pointer;
+    }
+
+}
+
+@media screen and (max-width: 479px) {
+    .logo{
+        margin-top: 5px;
+        width: 100%;
+        height: auto;
+        float: left;
+        text-align: center;
+        font-size: 28px;
+        font-weight: 400;
+    }
+
+    .log_reg{
+        width: 100%;
+        height:auto;
+        float: left;
+        margin-top: 10px;
+        text-align: center;
+    }
+
+    .log_reg ul{
+        margin-bottom: 10px;
+        float: left;
+
+    }
+
+    .log_reg ul li{
+        margin: 5px;
+        display: inline;
+        list-style-type: none;
+        cursor: pointer;
+    }
+
+}

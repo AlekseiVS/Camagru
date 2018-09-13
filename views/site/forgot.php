@@ -4,9 +4,9 @@
             <div class="errors">
                 <?php if($result){ ?>
                 <div class="congratulations_header">Congratulations!</div>
-                <div class="congratulations_text">Password sent to e-mail</div>
-                <a href="/login"><button>Log in</button></a>
-                <?php } else{
+                <div class="congratulations_text">To change data, click on the link that we sent to you by email adress!</div>
+                <?php }
+                else{
                 if (isset($errors) && is_array($errors)): ?>
                     <ul>
                         <?php foreach ($errors as $error): ?>
@@ -23,7 +23,7 @@
             </div>
             <form action="#" method="post">
                 <input type="email" name="email" placeholder="E-mail" value="<?php echo $email; ?>"/>
-                <input type="submit" name="submit"  value="Send"/>
+                <input type="submit" name="submit"  value="Change data"/>
             </form>
             <?php } ?>
         </div>

@@ -5,7 +5,6 @@ function showLike(id){
     var xhr = new XMLHttpRequest();
     var data = "img_id=" + img_id;
 
-
     xhr.open('POST', '/like_save', true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.send(data);

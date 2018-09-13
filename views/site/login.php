@@ -19,7 +19,7 @@
             <input type="email" name="email" placeholder="E-mail" value="<?php echo $email; ?>"/>
             <input type="password" name="password" placeholder="Password" value="<?php echo $password; ?>"/>
             <input type="submit" name="submit"  value="Log in"/>
-            <div class="have_account"><a href="/forgot">Forgot password?</a></div>
+            <div class="have_account"><a href="/forgot_password">Forgot password?</a></div>
         </form>
     </div>
 

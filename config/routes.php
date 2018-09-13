@@ -34,6 +34,7 @@ return array(
     '^like_color$' => 'photo/like_color', //actionLikes_save  PhotoController
 
 
+    'change_data' => 'user/change_data', //actionGallery_user  PhotoController
 
 
     '^gallery_user/page-([0-9]+)$' => 'photo/gallery_user', //actionGallery_user  PhotoController
