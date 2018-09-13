@@ -179,9 +179,10 @@ class UserController
             }
         }
         header("Location: /login");
+        return true;
     }
 
-
+//<script>alert(hello);<script>
 
 
 

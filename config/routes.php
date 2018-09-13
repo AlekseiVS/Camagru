@@ -8,7 +8,7 @@ return array(
 
     '^logout$' => 'user/logout', //actionLogout  UserController
 
-    '^confirm$' => 'user/confirm', //actionConfirm  UserController //  Проверить на эррор,
+    'confirm' => 'user/confirm', //actionConfirm  UserController //  Проверить на эррор,
 
 
     '^error404$' => 'user/error404', //actionError404  UserController

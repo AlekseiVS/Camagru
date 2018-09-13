@@ -26,7 +26,7 @@ class PhotoController{
             $url = $_SERVER['REQUEST_URI'];
             $page = substr($url, 14, 3);
             $page = intval($page);
-            $offset = ($page - 1) * 4;
+            $offset = ($page - 1) * 6;
 
 
             $result1 = Photo::getDataTableImgUsersGalleryPage($offset);
@@ -41,7 +41,7 @@ class PhotoController{
             }
 
             $total = Photo::getTotalProductsGalleryPage();
-            $limit = 4;
+            $limit = 6;
             $index = 'page-';
 
             $pagination = new Pagination($total, $page, $limit, $index);
@@ -54,12 +54,12 @@ class PhotoController{
             $url = $_SERVER['REQUEST_URI'];
             $page = substr($url, 14, 3);
             $page = intval($page);
-            $offset = ($page - 1) * 4;
+            $offset = ($page - 1) * 6;
 
             $result1 = Photo::getDataTableImgUsersGalleryPage($offset);
 
             $total = Photo::getTotalProductsGalleryPage();
-            $limit = 4;
+            $limit = 6;
             $index = 'page-';
 
             $pagination = new Pagination($total, $page, $limit, $index);
@@ -80,7 +80,7 @@ class PhotoController{
             $url = $_SERVER['REQUEST_URI'];
             $page = substr($url, 19, 3);
             $page = intval($page);
-            $offset = ($page - 1) * 4;
+            $offset = ($page - 1) * 6;
 
             $result1 = Photo::getDataTableImgUsersGalleryUser($offset, $userId);
 
@@ -97,7 +97,7 @@ class PhotoController{
 
             $total = Photo::getTotalProductsGalleryUser($userId);
             $total =  intval($total);
-            $limit = 4;
+            $limit = 6;
             $index = 'page-';
 
             $pagination = new Pagination($total, $page, $limit, $index);

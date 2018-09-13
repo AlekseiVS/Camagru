@@ -173,7 +173,7 @@ button{outline:none;}
 }
 
 .make_photo, .show_photo{
-    width: 379px;
+    width: 400px;
     height: 300px;
     display: flex;
     border: 3px solid #868686;
@@ -182,8 +182,8 @@ button{outline:none;}
 
 .make_photo .overlay{
     position: absolute;
-    width: 379px;
-    height: 283px;
+    width: 400px;
+    height: 300px;
 }
 
 
@@ -191,13 +191,13 @@ button{outline:none;}
 
 
 .make_photo .overlay, .show_photo,  img{
-    width:379px;
+    width:400px;
     height: 300px;
 }
 
  img{
-    width: 379px;
-    height: 283px;
+    width: 400px;
+    height: 300px;
 }
 
 
