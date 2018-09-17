@@ -26,7 +26,14 @@
                     <input type="password" name="password" placeholder="Password" value="<?php echo $password; ?>"/>
                     <input type="submit" name="submit"  value="Edit"/>
                 </form>
-
+                <form action="#" method="post">
+                    <div class="text_block_send_comments">Sending notification of comments!?</div>
+                    <div class="form_radio">
+                        <div class="radio"><input type="radio" name="message" value="0" <?php if($user['message'] == '0') { echo "checked"; } ?>/>- Yes</div>
+                        <div class="radio"><input type="radio" name="message"  value="1" <?php if($user['message'] == '1') { echo "checked"; } ?>/>- No</div>
+                        <div class="radio_send"><input type="submit" name="submit"  value="Edit"/></div>
+                    </div>
+                </form>
             </div>
         </div>
     </main>

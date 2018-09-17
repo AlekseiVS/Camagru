@@ -23,6 +23,9 @@ function checkEvent(form){
         form.comment.value = "";
 
         var res = JSON.parse(xhr.responseText);
+        // console.log(xhr.responseText);
+
+
 
         var div = document.createElement('div');
         div.className = "comment";

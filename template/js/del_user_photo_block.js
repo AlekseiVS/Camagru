@@ -1,7 +1,6 @@
 function delBlockPhoto(id) {
 
     var img_id = id.substring(3, 1000);
-    console.log(img_id);
 
     var xhr = new XMLHttpRequest();
     var data = "img_id=" + img_id;
@@ -15,7 +14,6 @@ function delBlockPhoto(id) {
         if (this.readyState != 4) return;
 
         var id = 'del' + xhr.responseText;
-        console.log(id);
 
         var elem = document.getElementById(id);
         elem.parentNode.parentNode.removeChild(elem.parentNode);

@@ -4,7 +4,7 @@ class User{
     public static function register($name, $email, $password, $token){
         $db = Db::getConnection();
 
-        $sql = 'INSERT INTO users (name, email, password, token, status) VALUES (:name, :email, :password, :token, 0)';
+        $sql = 'INSERT INTO users (name, email, password, token, status, message) VALUES (:name, :email, :password, :token, 0, 0)';
 
         $result = $db->prepare($sql);
         $result->bindParam(':name', $name, PDO::PARAM_STR);
@@ -76,6 +76,18 @@ class User{
         return $result->execute();
     }
 
+
+    public static function editMessage($id, $message)
+    {
+        $db = Db::getConnection();
+
+        $sql = "UPDATE users SET message = :message WHERE id = :id";
+
+        $result = $db->prepare($sql);
+        $result->bindParam(':id', $id, PDO::PARAM_INT);
+        $result->bindParam(':message', $message, PDO::PARAM_STR);
+        return $result->execute();
+    }
 //------------------------------------------------------------------------------------------
 
     public static function checkUserData($email, $password)
@@ -176,20 +188,20 @@ class User{
 
 
 
-    public static function sendPasswordToEmail($userData){
-        $to = $userData['email'];
-        $subject = 'Change password!';
-        $message = 'Your password: '.$userData['password'];
-        $headers = 'From: osokoliu@gmail.com' . "\r\n" .
-            'Reply-To: osokoliu@gmail.com' . "\r\n" .
-            'X-Mailer: PHP/' . phpversion();
-
-        if(mail($to, $subject, $message, $headers)){
-            return true;
-        }
-
-        return false;
-    }
+//    public static function sendPasswordToEmail($userData){
+//        $to = $userData['email'];
+//        $subject = 'Change password!';
+//        $message = 'Your password: '.$userData['password'];
+//        $headers = 'From: osokoliu@gmail.com' . "\r\n" .
+//            'Reply-To: osokoliu@gmail.com' . "\r\n" .
+//            'X-Mailer: PHP/' . phpversion();
+//
+//        if(mail($to, $subject, $message, $headers)){
+//            return true;
+//        }
+//
+//        return false;
+//    }
 
 
     public static function sendLinkConfirmToEmail($email, $token){
@@ -223,6 +235,18 @@ class User{
         }
         else
             return false;
+
+    }
+
+    public static function sendCommentToEmail($email, $comment, $userName){
+        $to = $email;
+        $subject = 'Your photos commented';
+        $message = $userName.' left a comment: '.$comment;
+        $headers = 'From: osokoliu@gmail.com' . "\r\n" .
+            'Reply-To: osokoliu@gmail.com' . "\r\n" .
+            'X-Mailer: PHP/' . phpversion();
+
+        mail($to, $subject, $message, $headers);
 
     }
 

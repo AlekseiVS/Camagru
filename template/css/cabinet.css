@@ -94,6 +94,39 @@
 
 }
 
+.content_cabinet form .form_radio{
+    display: flex;
+    justify-content: space-around;
+}
+
+.content_cabinet form .radio{
+    display: flex;
+    align-items: center;
+    font-weight: 300;
+}
+
+.content_cabinet form .radio input[type="radio"]{
+    width:20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.content_cabinet form .radio_send{
+    width:90px;
+}
+
+.content_cabinet form .radio_send input[type="submit"]{
+    width:100%;
+    margin-left: 5px;
+}
+
+.content_cabinet form .text_block_send_comments{
+    margin: 50px 0 20px 0;
+    font-weight: 300;
+}
+
 button{outline:none;}
 
 .photo_bottom{

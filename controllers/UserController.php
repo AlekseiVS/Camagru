@@ -17,18 +17,19 @@ class UserController
 
             $errors = false;
 
-            if (!User::checkName($name)) {
-                $errors[] = 'The name can not be less than two characters';
-            }
-            if (!User::checkEmail($email)) {
-                $errors[] = 'Invalid email address';
-            }
-            if (!User::checkPassword($password)) {
-                $errors[] = 'Password must not be shorter than 6 characters';
-            }
-            if (User::checkEmailExists($email)) {
+            if (preg_match("/\s{1,}/", $name))
+                $errors[] = 'Do not use spaces in the name!';
+            if (!User::checkName($name))
+                $errors[] = 'The name can not be less than two characters.';
+            if (!User::checkEmail($email))
+                $errors[] = 'Invalid email address.';
+            if (User::checkEmailExists($email))
                 $errors[] = 'This email is already in use!';
-            }
+            if (preg_match("/\s{1,}/", $password))
+                $errors[] = 'Do not use spaces in the password!';
+            if (!User::checkPassword($password))
+                $errors[] = 'Password must not be shorter than 6 characters.';
+
             if ($errors == false) {
 
                 $token = User::createToken();
@@ -282,6 +283,12 @@ class UserController
                 if($errors == false){
                     $result = User::editPassword($userId, $password);
                 }
+            }
+            if (isset($_POST['submit']) && isset($_POST['message'])) {
+                $message = $_POST['message'];
+
+                User::editMessage($userId, $message);
+
             }
             require_once(ROOT . '/views/site/change_user_data.php');
         }

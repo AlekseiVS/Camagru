@@ -153,10 +153,28 @@ class Photo{
 
 
 
+    static function getDataTableImg($id_img){
+        $db = Db::getConnection();
+
+        $sql = 'SELECT * FROM img WHERE id_img = :id_img';
+
+        $result = $db->prepare($sql);
+        $result->bindParam(':id_img', $id_img, PDO::PARAM_INT);
+        $result->execute();
+
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+
+        $res = $result->fetch();
+
+        return  ($res);
+    }
+
+
+
     static function getDataTableImgUsersGalleryUser($offset, $id_user){
         $db = Db::getConnection();
 
-        $sql = 'SELECT * FROM img INNER JOIN users ON img.id_user = users.id WHERE img.id_user = :id_user LIMIT 4 OFFSET '.$offset;
+        $sql = 'SELECT * FROM img INNER JOIN users ON img.id_user = users.id WHERE img.id_user = :id_user LIMIT 6 OFFSET '.$offset;
 
         $result = $db->prepare($sql);
         $result->bindParam(':id_user', $id_user, PDO::PARAM_INT);
@@ -170,7 +188,7 @@ class Photo{
     static function getDataTableImgUsersGalleryPage($offset){
         $db = Db::getConnection();
 
-        $sql = 'SELECT * FROM img INNER JOIN users ON img.id_user = users.id LIMIT 4 OFFSET :offset';
+        $sql = 'SELECT * FROM img INNER JOIN users ON img.id_user = users.id LIMIT 6 OFFSET :offset';
 
         $result = $db->prepare($sql);
         $result->bindParam(':offset', $offset, PDO::PARAM_INT);

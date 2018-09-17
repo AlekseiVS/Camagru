@@ -108,9 +108,6 @@ class PhotoController{
     }
 
 
-    ////////////////////////////////////////////////////////
-
-
     public function actionCamera_view(){
 
         if (isset($_SESSION['userId'])) {
@@ -126,16 +123,12 @@ class PhotoController{
 
     }
 
-///////////////////////////////////////////////////////////
-///
-///
-///
+
     public function actionCamera_make(){
 
         if (isset($_SESSION['userId']) && isset($_POST['overlay'])) {
             $userId = $_SESSION['userId'];
             $user = User::getUserById($userId);
-
 
             $img1 = $_POST['overlay'];
             $img2 = preg_replace("/^.+base64,/", "", $_POST['img']);
@@ -202,12 +195,19 @@ class PhotoController{
 //          записать в БД id_img/user_id/comment в table comments
             Photo::saveIdImgUserNameCommentToTableComments($user['name'], $_POST['img_id'], htmlentities($_POST['comment'], ENT_HTML5));
 
+            $dataTableImg = Photo::getDataTableImg($_POST['img_id']);
+            $userDataForSendEmail = User::getUserById($dataTableImg['id_user']);
+            if ($userDataForSendEmail['message'] == '')
+                User::sendCommentToEmail($userDataForSendEmail['email'], $_POST['comment'], $user['name']);
+
+
             $result = [
                 'name' => $user['name'],
                 'comment' => $_POST['comment']
             ];
 
             echo json_encode($result);
+
         }
         else
             header('Location: /error404');
