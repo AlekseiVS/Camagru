@@ -11,7 +11,7 @@
 </head>
 <body>
 <header>
-    <div class="logo">Camagru</div>
+    <a href="/logo"><div class="logo">Camagru</div></a>
     <div class="log_reg">
         <ul>
             <?php if (isset($_SESSION['userId'])){?>

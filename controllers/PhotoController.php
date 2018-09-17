@@ -197,7 +197,7 @@ class PhotoController{
 
             $dataTableImg = Photo::getDataTableImg($_POST['img_id']);
             $userDataForSendEmail = User::getUserById($dataTableImg['id_user']);
-            if ($userDataForSendEmail['message'] == '')
+            if ($userDataForSendEmail['message'] == '0')
                 User::sendCommentToEmail($userDataForSendEmail['email'], $_POST['comment'], $user['name']);
 
 

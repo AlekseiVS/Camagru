@@ -1,6 +1,16 @@
 <?php
 class UserController
 {
+    public function actionLogo()
+    {
+        if(isset($_SESSION['userId'])){
+            header("Location: /gallery/page-1");
+        }
+        else
+            header("Location: /login");
+    }
+
+
     public function actionRegister()
     {
 
@@ -29,7 +39,6 @@ class UserController
                 $errors[] = 'Do not use spaces in the password!';
             if (!User::checkPassword($password))
                 $errors[] = 'Password must not be shorter than 6 characters.';
-
             if ($errors == false) {
 
                 $token = User::createToken();
@@ -247,7 +256,7 @@ class UserController
 
 
             if (isset($_POST['submit']) && isset($_POST['name'])) {
-                if (!User::checkName( $_POST['name'])) {
+                if (!User::checkName($_POST['name'])) {
                     $errors[] = 'The name can not be less than two characters';
                 }
                 else{
@@ -256,19 +265,23 @@ class UserController
 
                 if($errors == false){
                     $result = User::editName($userId, htmlentities($name, ENT_HTML5));
+                    $name = '';
                 }
             }
 
             if (isset($_POST['submit']) && isset($_POST['email'])) {
-                if (!User::checkEmail( $_POST['email'])) {
+                if (!User::checkEmail($_POST['email'])) {
                     $errors[] = 'Invalid email address';
                 }
+                if (User::checkEmailExists($_POST['email']))
+                    $errors[] = 'This email is already in use!';
                 else{
                     $email = $_POST['email'];
                 }
 
                 if($errors == false){
                     $result = User::editEmail($userId, $email);
+                    $email = '';
                 }
             }
 
@@ -282,6 +295,7 @@ class UserController
 
                 if($errors == false){
                     $result = User::editPassword($userId, $password);
+                    $password = '';
                 }
             }
             if (isset($_POST['submit']) && isset($_POST['message'])) {

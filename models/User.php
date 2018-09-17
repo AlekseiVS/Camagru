@@ -206,7 +206,7 @@ class User{
 
     public static function sendLinkConfirmToEmail($email, $token){
         $to = $email;
-        $subject = 'Confirm registration';
+        $subject = 'Confirm registration!';
         $message = 'Your link confirm: http://localhost:8080/confirm/?email='.$email.'&token='.$token;
         $headers = 'From: osokoliu@gmail.com' . "\r\n" .
             'Reply-To: osokoliu@gmail.com' . "\r\n" .
@@ -224,7 +224,7 @@ class User{
 
     public static function sendLinkChangeDataUser($email, $token){
         $to = $email;
-        $subject = 'Confirm registration';
+        $subject = 'Change data!';
         $message = 'Your link confirm: http://localhost:8080/change_data/?email='.$email.'&token='.$token;
         $headers = 'From: osokoliu@gmail.com' . "\r\n" .
             'Reply-To: osokoliu@gmail.com' . "\r\n" .
@@ -240,7 +240,7 @@ class User{
 
     public static function sendCommentToEmail($email, $comment, $userName){
         $to = $email;
-        $subject = 'Your photos commented';
+        $subject = 'Your photo commented!';
         $message = $userName.' left a comment: '.$comment;
         $headers = 'From: osokoliu@gmail.com' . "\r\n" .
             'Reply-To: osokoliu@gmail.com' . "\r\n" .

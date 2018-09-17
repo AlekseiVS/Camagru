@@ -1,6 +1,8 @@
 <?php
 return array(
 
+    '^logo$' => 'user/logo', //actionLogin  UserController
+
     '^register$' => 'user/register', //actionRegister UserController
     '^login$' => 'user/login', //actionLogin  UserController
 
