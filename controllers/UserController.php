@@ -37,8 +37,10 @@ class UserController
                 $errors[] = 'This email is already in use!';
             if (preg_match("/\s{1,}/", $password))
                 $errors[] = 'Do not use spaces in the password!';
-            if (!User::checkPassword($password))
-                $errors[] = 'Password must not be shorter than 6 characters.';
+            if (!preg_match("/(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/", $password))
+                $errors[] = 'The password should consist of at least 8 characters, a small letter, a large letter and digit';
+//            if (!User::checkPassword($password))
+//                $errors[] = 'Password must not be shorter than 6 characters.';
             if ($errors == false) {
 
                 $token = User::createToken();
@@ -51,6 +53,8 @@ class UserController
 
         }
         else if (isset($_SESSION['userId'])) {
+            $userId = $_SESSION['userId'];
+            $user = User::getUserById($userId);
             header("Location: /you_are_registration");
         }
 
@@ -94,12 +98,16 @@ class UserController
             if ($errors == false){
 //                 Если данные правильные, запоминаем пользователя (сессия)
                 User::auth($userId);
+                $userId = $_SESSION['userId'];
+                $user = User::getUserById($userId);
 //                 Перенаправляем пользователя в закрытую часть - кабинет
                 header("Location: /cabinet");
             }
 
         }
         else if (isset($_SESSION['userId'])) {
+            $userId = $_SESSION['userId'];
+            $user = User::getUserById($userId);
             header("Location: /you_are_registration");
         }
 
@@ -131,6 +139,8 @@ class UserController
             }
         }
         else if (isset($_SESSION['userId'])) {
+            $userId = $_SESSION['userId'];
+            $user = User::getUserById($userId);
             header("Location: /you_are_registration");
         }
 
@@ -192,14 +202,8 @@ class UserController
         return true;
     }
 
-//<script>alert(hello);<script>
-
-
-
-
     public function actionLogout()
     {
-        session_start();
         unset($_SESSION['userId']);
         header('Location: /login');
     }
@@ -259,6 +263,8 @@ class UserController
                 if (!User::checkName($_POST['name'])) {
                     $errors[] = 'The name can not be less than two characters';
                 }
+                if (preg_match("/\s{1,}/", $_POST['name']))
+                    $errors[] = 'Do not use spaces in the name!';
                 else{
                     $name = $_POST['name'];
                 }
@@ -286,9 +292,13 @@ class UserController
             }
 
             if (isset($_POST['submit']) && isset($_POST['password'])) {
-                if (!User::checkPassword( $_POST['password'])) {
-                    $errors[] = 'The name can not be less than two characters';
-                }
+//                if (!User::checkPassword( $_POST['password'])) {
+//                    $errors[] = 'The name can not be less than two characters';
+//                }
+                if (!preg_match("/(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/", $_POST['password']))
+                    $errors[] = 'The password should consist of at least 8 characters, a small letter, a large letter and numbers';
+                if (preg_match("/\s{1,}/", $_POST['password']))
+                    $errors[] = 'Do not use spaces in the password!';
                 else{
                     $password = $_POST['password'];
                 }

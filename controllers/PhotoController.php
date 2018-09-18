@@ -17,6 +17,7 @@ class PhotoController{
 
 
 
+
     public function actionGallery_page(){
 
         if(isset($_SESSION['userId'])) {
@@ -68,6 +69,60 @@ class PhotoController{
         }
         return true;
     }
+
+
+
+//    public function actionGallery_page(){
+//
+//        if(isset($_SESSION['userId'])) {
+//            $userId = $_SESSION['userId'];
+//            $user = User::getUserById($userId);
+//
+//            $url = $_SERVER['REQUEST_URI'];
+//            $page = substr($url, 14, 3);
+//            $page = intval($page);
+//            $offset = ($page - 1) * 6;
+//
+//
+//            $result1 = Photo::getDataTableImgUsersGalleryPage($offset);
+//
+//            foreach ($result1 as $key => $row) {
+//                $result2[$key] = Photo::getDataTableComments($row['id_img']);
+//                $count = 0;
+//                foreach ($result2[$key] as $array)
+//                    $count++;
+//                $count_comments[$row['id_img']]['count'] = $count;
+//                $count_like[$row['id_img']]['count'] = Photo::getDataTableLike($row['id_img']);
+//            }
+//
+//            $total = Photo::getTotalProductsGalleryPage();
+//            $limit = 6;
+//            $index = 'page-';
+//
+//            $pagination = new Pagination($total, $page, $limit, $index);
+//
+//            require_once(ROOT . '/views/site/gallery.php');
+//
+//        }
+//        else if(!isset($_SESSION['userId'])){
+//
+//            $url = $_SERVER['REQUEST_URI'];
+//            $page = substr($url, 14, 3);
+//            $page = intval($page);
+//            $offset = ($page - 1) * 6;
+//
+//            $result1 = Photo::getDataTableImgUsersGalleryPage($offset);
+//
+//            $total = Photo::getTotalProductsGalleryPage();
+//            $limit = 6;
+//            $index = 'page-';
+//
+//            $pagination = new Pagination($total, $page, $limit, $index);
+//
+//            require_once(ROOT . '/views/site/gallery.php');
+//        }
+//        return true;
+//    }
 
 
 

@@ -185,11 +185,17 @@ class Photo{
     }
 
 
+
+
+    ///////////////////////////////////////////////////////////////////////////////////////
+
+
     static function getDataTableImgUsersGalleryPage($offset){
         $db = Db::getConnection();
 
-        $sql = 'SELECT * FROM img INNER JOIN users ON img.id_user = users.id LIMIT 6 OFFSET :offset';
+//        $sql = 'SELECT * FROM img INNER JOIN users ON img.id_user = users.id WHERE img.id_user = :id_user LIMIT 6 OFFSET '.$offset.'ORDER BY img.id_img DESC';
 
+        $sql = 'SELECT * FROM img INNER JOIN users ON img.id_user = users.id LIMIT 6 OFFSET :offset';
         $result = $db->prepare($sql);
         $result->bindParam(':offset', $offset, PDO::PARAM_INT);
         $result->execute();
@@ -197,6 +203,23 @@ class Photo{
         return $result->fetchAll();
 
     }
+
+
+
+//    static function getDataTableImgUsersGalleryPage($offset){
+//        $db = Db::getConnection();
+//
+////        $sql = 'SELECT * FROM img INNER JOIN users ON img.id_user = users.id WHERE img.id_user = :id_user LIMIT 6 OFFSET '.$offset.'ORDER BY img.id_img DESC';
+//
+//        $sql = 'SELECT * FROM img INNER JOIN users ON img.id_user = users.id LIMIT 6 OFFSET :offset';
+//
+//        $result = $db->prepare($sql);
+//        $result->bindParam(':offset', $offset, PDO::PARAM_INT);
+//        $result->execute();
+//
+//        return $result->fetchAll();
+//
+//    }
 
 
     static function getTotalProductsGalleryPage(){
