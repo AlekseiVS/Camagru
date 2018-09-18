@@ -85,13 +85,12 @@ class PhotoController{
             $result1 = Photo::getDataTableImgUsersGalleryUser($offset, $userId);
 
             foreach ($result1 as $key => $row){
-                    $result2[$key] = Photo::getDataTableComments($row['id_img']);
-                    $count = 0;
-                    foreach ($result2[$key] as $array)
-                        $count++;
-                    $count_comments[$row['id_img']]['count'] = $count;
-                    $count_like[$row['id_img']]['count'] = Photo::getDataTableLike($row['id_img']);
-//                }
+                $result2[$key] = Photo::getDataTableComments($row['id_img']);
+                $count = 0;
+                foreach ($result2[$key] as $array)
+                    $count++;
+                $count_comments[$row['id_img']]['count'] = $count;
+                $count_like[$row['id_img']]['count'] = Photo::getDataTableLike($row['id_img']);
             }
             $result3['user_name_gallery'] = $user['name'];
 
@@ -167,10 +166,10 @@ class PhotoController{
             $name_img = time();
             $src_img = "template/image/".$name_img.".png";
 
-            //Сохранение в папку
+            //save to folder
             file_put_contents($src_img, $img);
 
-            //Сохранение в БД
+            //save to db
             Photo::saveSrcImgAndUserId($userId, $src_img);
 
             echo 'Your photo has been added to the gallery';
@@ -294,10 +293,6 @@ class PhotoController{
 
 
 
-
-
-
 }
-
 
 ?>

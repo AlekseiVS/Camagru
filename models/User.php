@@ -88,7 +88,12 @@ class User{
         $result->bindParam(':message', $message, PDO::PARAM_STR);
         return $result->execute();
     }
-//------------------------------------------------------------------------------------------
+
+
+
+
+//------------------------------------- Check user data--------------------------------------------------
+
 
     public static function checkUserData($email, $password)
     {
@@ -186,22 +191,6 @@ class User{
     }
 
 
-
-
-//    public static function sendPasswordToEmail($userData){
-//        $to = $userData['email'];
-//        $subject = 'Change password!';
-//        $message = 'Your password: '.$userData['password'];
-//        $headers = 'From: osokoliu@gmail.com' . "\r\n" .
-//            'Reply-To: osokoliu@gmail.com' . "\r\n" .
-//            'X-Mailer: PHP/' . phpversion();
-//
-//        if(mail($to, $subject, $message, $headers)){
-//            return true;
-//        }
-//
-//        return false;
-//    }
 
 
     public static function sendLinkConfirmToEmail($email, $token){
@@ -307,7 +296,6 @@ class User{
             $result = $db->prepare($sql);
             $result->bindParam(':id', $id, PDO::PARAM_INT);
 
-            //Указываем что хоти получить данные в виде массива
             $result->setFetchMode(PDO::FETCH_ASSOC);
             $result->execute();
 

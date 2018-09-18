@@ -32,14 +32,14 @@
             <div class="patterns">
                 <a href="#"><div class="patterns_photo"><img onclick="funcChangeSRC(this)" src="../../template/image/space.png" alt=""></div></a>
                 <a href="#"><div class="patterns_photo"><img onclick="funcChangeSRC(this)" src="../../template/image/rocket.png" alt=""></div></a>
-                <a href="#"><div class="patterns_photo"><img onclick="funcChangeSRC(this)" src="#" alt=""></div></a>
-                <a href="#"><div class="patterns_photo"><img onclick="funcChangeSRC(this)" src="#" alt=""></div></a>
-                <a href="#"><div class="patterns_photo"><img onclick="funcChangeSRC(this)" src="#" alt=""></div></a>
-                <a href="#"><div class="patterns_photo"><img onclick="funcChangeSRC(this)" src="#" alt=""></div></a>
-                <a href="#"><div class="patterns_photo"><img onclick="funcChangeSRC(this)" src="#" alt=""></div></a>
-                <a href="#"><div class="patterns_photo"><img onclick="funcChangeSRC(this)" src="#" alt=""></div></a>
-                <a href="#"><div class="patterns_photo"><img onclick="funcChangeSRC(this)" src="#" alt=""></div></a>
-                <a href="#"><div class="patterns_photo"><img onclick="funcChangeSRC(this)" src="#" alt=""></div></a>
+                <a href="#"><div class="patterns_photo"><img onclick="funcChangeSRC(this)" src="../../template/image/happy.png" alt=""></div></a>
+                <a href="#"><div class="patterns_photo"><img onclick="funcChangeSRC(this)" src="../../template/image/cake.png" alt=""></div></a>
+                <a href="#"><div class="patterns_photo"><img onclick="funcChangeSRC(this)" src="../../template/image/mask.png" alt=""></div></a>
+                <a href="#"><div class="patterns_photo"><img onclick="funcChangeSRC(this)" src="../../template/image/mustache.png" alt=""></div></a>
+                <a href="#"><div class="patterns_photo"><img onclick="funcChangeSRC(this)" src="../../template/image/mustache1.png" alt=""></div></a>
+                <a href="#"><div class="patterns_photo"><img onclick="funcChangeSRC(this)" src="../../template/image/mustache-and-pipe.png" alt=""></div></a>
+                <a href="#"><div class="patterns_photo"><img onclick="funcChangeSRC(this)" src="../../template/image/eyeglasses.png" alt=""></div></a>
+                <a href="#"><div class="patterns_photo"><img onclick="funcChangeSRC(this)" src="../../template/image/cap.png" alt=""></div></a>
             </div>
         </div>
     </main>
