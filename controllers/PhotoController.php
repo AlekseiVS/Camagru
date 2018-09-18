@@ -103,6 +103,8 @@ class PhotoController{
 
             require_once(ROOT . '/views/site/gallery_user.php');
         }
+        else
+            header('Location: /you_are_not_registration');
         return true;
     }
 
