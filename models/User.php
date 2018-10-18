@@ -16,6 +16,7 @@ class User{
     }
 
 
+
     public static function createToken(){
         $token = "QWERTYUIOP";
         $token2 = str_shuffle($token);
@@ -27,9 +28,6 @@ class User{
         return false;
     }
 
-
-
-//--------------------------Edit user data--------------------------------------------
 
 
     public static function editName($id, $name)
@@ -91,10 +89,6 @@ class User{
 
 
 
-
-//------------------------------------- Check user data--------------------------------------------------
-
-
     public static function checkUserData($email, $password)
     {
         $db = Db::getConnection();
@@ -117,6 +111,7 @@ class User{
     }
 
 
+
     public static function checkStatus($email)
     {
         $db = Db::getConnection();
@@ -133,7 +128,6 @@ class User{
         }
         return false;
     }
-
 
 
 
@@ -157,8 +151,6 @@ class User{
 
 
 
-
-
     public static function confirmLinkThroughEmailToken($email, $token)
     {
         $db = Db::getConnection();
@@ -178,8 +170,6 @@ class User{
 
 
 
-
-
     public static function changeStatus($email){
         $db = Db::getConnection();
 
@@ -189,7 +179,6 @@ class User{
         $result->bindParam(':email', $email, PDO::PARAM_STR);
         $result->execute();
     }
-
 
 
 
@@ -227,6 +216,8 @@ class User{
 
     }
 
+
+
     public static function sendCommentToEmail($email, $comment, $userName){
         $to = $email;
         $subject = 'Your photo commented!';
@@ -256,6 +247,7 @@ class User{
     }
 
 
+
     public static function checkPassword($password){
         if (strlen($password) >=6){
             return true;
@@ -263,12 +255,15 @@ class User{
         return false;
     }
 
+
+
     public static function checkEmail($email){
         if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
             return true;
         }
         return false;
     }
+
 
 
     public static function checkEmailExists($email){

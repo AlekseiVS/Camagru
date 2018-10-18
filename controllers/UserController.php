@@ -11,14 +11,13 @@ class UserController
     }
 
 
+
     public function actionRegister()
     {
-
         $name = '';
         $email = '';
         $password = '';
         $result = false;
-
 
         if (isset($_POST['submit'])) {
             $name = htmlentities($_POST['name'], ENT_HTML5);
@@ -39,16 +38,11 @@ class UserController
                 $errors[] = 'Do not use spaces in the password!';
             if (!preg_match("/(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/", $password))
                 $errors[] = 'The password should consist of at least 8 characters, a small letter, a large letter and digit';
-//            if (!User::checkPassword($password))
-//                $errors[] = 'Password must not be shorter than 6 characters.';
             if ($errors == false) {
-
                 $token = User::createToken();
                 $password = md5($password);
                 $result = User::register($name, $email, $password, $token);
-
                 User::sendLinkConfirmToEmail($email, $token);
-
             }
 
         }
@@ -72,10 +66,8 @@ class UserController
         if (isset($_POST['submit'])) {
             $email = $_POST['email'];
             $password = $_POST['password'];
-
             $errors = false;
 
-            // Валидация полей
             if (!User::checkEmail($email)) {
                 $errors[] = 'Invalid email address';
             }
@@ -83,27 +75,21 @@ class UserController
                 $errors[] = 'Password must not be shorter than 6 characters';
             }
 
-
             $userId = User::checkUserData($email, $password);
-
             $statusUser = User::checkStatus($email);
 
             if ($userId == false) {
-                // Если данные неправильные - показываем ошибку
                 $errors[] = 'Invalid login data';
             }
             if ($statusUser == false) {
                 $errors[] = 'You did not confirm the registration by link on your mail';
             }
             if ($errors == false){
-//                 Если данные правильные, запоминаем пользователя (сессия)
                 User::auth($userId);
                 $userId = $_SESSION['userId'];
                 $user = User::getUserById($userId);
-//                 Перенаправляем пользователя в закрытую часть - кабинет
                 header("Location: /cabinet");
             }
-
         }
         else if (isset($_SESSION['userId'])) {
             $userId = $_SESSION['userId'];
@@ -124,7 +110,6 @@ class UserController
 
         if (isset($_POST['submit'])) {
             $email = $_POST['email'];
-
             $errors = false;
 
             if (!User::checkEmail($email)) {
@@ -154,7 +139,6 @@ class UserController
     public function actionChange_data()
     {
         $result = false;
-
         $email = '';
         $token = '';
         $password = '';
@@ -174,6 +158,7 @@ class UserController
         }
         else
             header("Location: /forgot_password");
+
         return true;
     }
 
@@ -183,7 +168,6 @@ class UserController
     public function actionConfirm()
     {
         $result = false;
-
         $email = '';
         $token = '';
         $password = '';
@@ -251,13 +235,11 @@ class UserController
         $email = '';
         $password = '';
         $result = false;
-
         $errors = false;
 
         if (isset($_SESSION['userId'])) {
             $userId = $_SESSION['userId'];
             $user = User::getUserById($userId);
-
 
             if (isset($_POST['submit']) && isset($_POST['name'])) {
                 if (!User::checkName($_POST['name'])) {
@@ -268,13 +250,11 @@ class UserController
                 else{
                     $name = $_POST['name'];
                 }
-
                 if($errors == false){
                     $result = User::editName($userId, htmlentities($name, ENT_HTML5));
                     $name = '';
                 }
             }
-
             if (isset($_POST['submit']) && isset($_POST['email'])) {
                 if (!User::checkEmail($_POST['email'])) {
                     $errors[] = 'Invalid email address';
@@ -290,11 +270,8 @@ class UserController
                     $email = '';
                 }
             }
-
             if (isset($_POST['submit']) && isset($_POST['password'])) {
-//                if (!User::checkPassword( $_POST['password'])) {
-//                    $errors[] = 'The name can not be less than two characters';
-//                }
+
                 if (!preg_match("/(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/", $_POST['password']))
                     $errors[] = 'The password should consist of at least 8 characters, a small letter, a large letter and numbers';
                 if (preg_match("/\s{1,}/", $_POST['password']))
@@ -302,7 +279,6 @@ class UserController
                 else{
                     $password = $_POST['password'];
                 }
-
                 if($errors == false){
                     $result = User::editPassword($userId, $password);
                     $password = '';
@@ -321,7 +297,6 @@ class UserController
 
         return true;
     }
-
 
 }
 ?>

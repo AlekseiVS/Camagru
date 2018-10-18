@@ -1,9 +1,9 @@
 <?php
 class Photo{
+
     static function saveSrcImgAndUserId($id_user, $src_img){
         $db = Db::getConnection();
-
-        $date =  date("Y-m-d H:i:s"); //  -час-мин-сек
+        $date =  date("Y-m-d H:i:s");
 
         $sql = 'INSERT INTO img (id_user, src_img, date) VALUES (:id_user, :src_img, :date)';
 
@@ -14,8 +14,6 @@ class Photo{
 
         return $result->execute();
     }
-
-
 
 
 
@@ -47,7 +45,7 @@ class Photo{
         return $result->fetch();
     }
 
-//--------------------------------------------------------------------------------
+
 
     static function delLike($id_user, $id_img){
         $db = Db::getConnection();
@@ -58,12 +56,10 @@ class Photo{
         $result->bindParam(':id_user', $id_user, PDO::PARAM_INT);
         $result->bindParam(':id_img', $id_img, PDO::PARAM_INT);
         $result->execute();
-//        $result->setFetchMode(PDO::FETCH_ASSOC);
 
         $result->fetch();
 
     }
-
 
 
 
@@ -97,7 +93,6 @@ class Photo{
 
 
 
-//------------------------------------------------------------------------------------
     static function getDataTableLike($id_img)
     {
         $db = Db::getConnection();
@@ -133,6 +128,7 @@ class Photo{
     }
 
 
+
     static function getDataTableComments($id_img){
         $db = Db::getConnection();
 
@@ -148,7 +144,6 @@ class Photo{
 
         return  (array_reverse($res));
 
-//        return $res;
     }
 
 
@@ -185,11 +180,11 @@ class Photo{
     }
 
 
+
     static function getDataTableImgUsersGalleryPage($offset){
         $db = Db::getConnection();
 
         $sql = 'SELECT * FROM img INNER JOIN users ON img.id_user = users.id ORDER BY img.date DESC LIMIT 6 OFFSET :offset';
-//        $sql = 'SELECT * FROM img, users WHERE img.id_user = users.id ORDER BY img.date DESC LIMIT 6 OFFSET :offset';
 
         $result = $db->prepare($sql);
         $result->bindParam(':offset', $offset, PDO::PARAM_INT);
@@ -210,6 +205,8 @@ class Photo{
         return $row['count'];
     }
 
+
+
     static function getTotalProductsGalleryUser($id_user){
         $db = Db::getConnection();
 
@@ -222,7 +219,6 @@ class Photo{
 
         return $row['count'];
     }
-
 
 }
 

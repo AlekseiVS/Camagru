@@ -16,16 +16,4 @@ function __autoload($class_name)
     }
 }
 
-//namespace
-
-//echo "autoload arg: " . $class_name;
-//$nameParts = explode("\\", $class_name);
-//$path = ROOT . "/" . $nameParts[1] . "/" . $nameParts[2] . ".php";
-//echo "<br>path to class: " . $path;
-
-
-//if (is_file($path)){
-//    include_once $path;
-//}
-
 ?>

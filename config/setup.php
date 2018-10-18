@@ -1,8 +1,7 @@
 <?php
+
 $paramsPatch = 'database.php';
 $params = include($paramsPatch);
-
-//var_dump($params);
 
 $dsn = "mysql:host={$params['host']};dbname={$params['dbname']}";
 
@@ -19,5 +18,6 @@ try {
 catch (PDOException $exp){
     echo "Something go wrong " . $exp->getMessage();
 }
+
 ?>
 

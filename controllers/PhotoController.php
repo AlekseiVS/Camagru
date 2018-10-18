@@ -17,7 +17,6 @@ class PhotoController{
 
 
 
-
     public function actionGallery_page(){
 
         if(isset($_SESSION['userId'])) {
@@ -72,61 +71,6 @@ class PhotoController{
 
 
 
-//    public function actionGallery_page(){
-//
-//        if(isset($_SESSION['userId'])) {
-//            $userId = $_SESSION['userId'];
-//            $user = User::getUserById($userId);
-//
-//            $url = $_SERVER['REQUEST_URI'];
-//            $page = substr($url, 14, 3);
-//            $page = intval($page);
-//            $offset = ($page - 1) * 6;
-//
-//
-//            $result1 = Photo::getDataTableImgUsersGalleryPage($offset);
-//
-//            foreach ($result1 as $key => $row) {
-//                $result2[$key] = Photo::getDataTableComments($row['id_img']);
-//                $count = 0;
-//                foreach ($result2[$key] as $array)
-//                    $count++;
-//                $count_comments[$row['id_img']]['count'] = $count;
-//                $count_like[$row['id_img']]['count'] = Photo::getDataTableLike($row['id_img']);
-//            }
-//
-//            $total = Photo::getTotalProductsGalleryPage();
-//            $limit = 6;
-//            $index = 'page-';
-//
-//            $pagination = new Pagination($total, $page, $limit, $index);
-//
-//            require_once(ROOT . '/views/site/gallery.php');
-//
-//        }
-//        else if(!isset($_SESSION['userId'])){
-//
-//            $url = $_SERVER['REQUEST_URI'];
-//            $page = substr($url, 14, 3);
-//            $page = intval($page);
-//            $offset = ($page - 1) * 6;
-//
-//            $result1 = Photo::getDataTableImgUsersGalleryPage($offset);
-//
-//            $total = Photo::getTotalProductsGalleryPage();
-//            $limit = 6;
-//            $index = 'page-';
-//
-//            $pagination = new Pagination($total, $page, $limit, $index);
-//
-//            require_once(ROOT . '/views/site/gallery.php');
-//        }
-//        return true;
-//    }
-
-
-
-
     public function actionGallery_user(){
         if (isset($_SESSION['userId'])) {
             $userId = $_SESSION['userId'];
@@ -164,6 +108,7 @@ class PhotoController{
     }
 
 
+
     public function actionCamera_view(){
 
         if (isset($_SESSION['userId'])) {
@@ -178,6 +123,7 @@ class PhotoController{
         return true;
 
     }
+
 
 
     public function actionCamera_make(){
@@ -210,7 +156,6 @@ class PhotoController{
 
 
 
-
     public function actionPhoto_save(){
         if (isset($_SESSION['userId']) && isset($_POST['photo'])) {
             $userId = $_SESSION['userId'];
@@ -223,15 +168,11 @@ class PhotoController{
             $name_img = time();
             $src_img = "template/image/".$name_img.".png";
 
-            //save to folder
             file_put_contents($src_img, $img);
 
-            //save to db
             Photo::saveSrcImgAndUserId($userId, $src_img);
 
             echo 'Your photo has been added to the gallery';
-
-
         }
         else
             header('Location: /error404');
@@ -245,10 +186,8 @@ class PhotoController{
     public function actionComment_save(){
         if (isset($_SESSION['userId']) && isset($_POST['comment'])) {
             $userId = $_SESSION['userId'];
-
             $user = User::getUserById($userId);
 
-//          записать в БД id_img/user_id/comment в table comments
             Photo::saveIdImgUserNameCommentToTableComments($user['name'], $_POST['img_id'], htmlentities($_POST['comment'], ENT_HTML5));
 
             $dataTableImg = Photo::getDataTableImg($_POST['img_id']);
@@ -300,9 +239,8 @@ class PhotoController{
 
 
 
-
     public function actionLike_color(){
-//        echo 'aaa';
+
         if (isset($_SESSION['userId']) && isset($_POST)) {
             $userId = $_SESSION['userId'];
 

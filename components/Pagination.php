@@ -86,8 +86,6 @@ class Pagination
             # Если текущая это текущая страница, ссылки нет и добавляется класс active
             if ($page == $this->current_page) {
                 $links .= '<li class="active"><a href="#">' . $page . '</a></li>';
-//                echo $page;
-//                echo $links;
             } else {
                 # Иначе генерируем ссылку
                 $links .= $this->generateHtml($page);
@@ -195,8 +193,6 @@ class Pagination
      */
     private function amount()
     {
-//        echo $this->total;
-//        echo $this->limit;
 //        # Делим и возвращаем
         return ceil($this->total / $this->limit);
     }
